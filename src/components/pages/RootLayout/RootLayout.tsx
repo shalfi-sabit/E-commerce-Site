@@ -3,12 +3,12 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../../shared/Navbar/Navbar";
 
 const RootLayout = () => {
-    return (
-        <div>
-            <Navbar />
-            <Outlet></Outlet>
-        </div>
-    );
+  return (
+    <main>
+      <Navbar />
+      <Outlet></Outlet>
+    </main>
+  );
 };
 
 export default RootLayout;
