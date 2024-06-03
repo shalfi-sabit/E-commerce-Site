@@ -5,7 +5,7 @@ import Wrapper from "../../UI/Wrapper";
 import SearchBox from "./SearchBox";
 import WishlistIcon from "../../../assets/icons/WishlistIcon";
 import CartIcon from "../../../assets/icons/CartIcon";
-import ProfileIconContainer from "../../UI/ProfileIconContainer";
+import ProfileIconContainer from "../../UI/ProfileIconContainer/ProfileIconContainer.tsx";
 
 import getLoginStatus from "../../../util/getLoginStatus.ts";
 
