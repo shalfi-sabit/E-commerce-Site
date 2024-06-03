@@ -6,6 +6,7 @@ const ProfileIconFilled = () => {
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="focus:outline-none cursor-pointer"
     >
       <rect width="32" height="32" rx="16" fill="#DB4444" />
       <path
