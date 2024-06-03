@@ -1,9 +1,8 @@
-interface Props{
+interface ButtonProps{
     text:string;
 }
 
-
-const OutlinedButton:React.FC<Props> = ({text}) => {
+const OutlinedButton:React.FC<ButtonProps> = ({text}) => {
     return (
         <div>
             <button className="border-solid border-[1px] rounded border-slate-500 text-black 
