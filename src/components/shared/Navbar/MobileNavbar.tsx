@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import SearchBox from "./SearchBox";
-import ProfileIconContainer from "../../UI/ProfileIconContainer/ProfileIconContainer";
+import ProfileIconContainer from "../../UI/ProfileIconContainer";
 import WishlistIconContainer from "../../UI/WishlistIconContainer";
 import CartIconContainer from "../../UI/CartIconContainer";
 

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import Wrapper from "../../UI/Wrapper";
-import ChooseLanguage from "./ChooseLanguage";
-import SearchBox from "./SearchBox";
+import Wrapper from "../../UI/Wrapper.tsx";
+import ChooseLanguage from "./ChooseLanguage.tsx";
+import SearchBox from "./SearchBox.tsx";
 
-import getLoginStatus from "../../../util/getLoginStatus.ts";
-import ProfileIconContainer from "../../UI/ProfileIconContainer/ProfileIconContainer.tsx";
+import getLoginStatus from "../../../utils/getLoginStatus.ts";
+import ProfileIconContainer from "../../UI/ProfileIconContainer/index.tsx";
 import WishlistIconContainer from "../../UI/WishlistIconContainer.tsx";
 import CartIconContainer from "../../UI/CartIconContainer.tsx";
 import MenuIcon from "../../../assets/icons/menu.png";
