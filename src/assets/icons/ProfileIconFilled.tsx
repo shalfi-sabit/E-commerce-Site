@@ -1,12 +1,10 @@
 const ProfileIconFilled = () => {
   return (
     <svg
-      width="32"
-      height="32"
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="focus:outline-none cursor-pointer"
+      className="focus:outline-none cursor-pointer h-7 w-7 sm:h-8 sm:w-8"
     >
       <rect width="32" height="32" rx="16" fill="#DB4444" />
       <path

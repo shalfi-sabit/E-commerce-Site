@@ -1,26 +1,36 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
-import ChooseLanguage from "./ChooseLanguage";
 import Wrapper from "../../UI/Wrapper";
+import ChooseLanguage from "./ChooseLanguage";
 import SearchBox from "./SearchBox";
-import WishlistIcon from "../../../assets/icons/WishlistIcon";
-import CartIcon from "../../../assets/icons/CartIcon";
-import ProfileIconContainer from "../../UI/ProfileIconContainer/ProfileIconContainer.tsx";
 
 import getLoginStatus from "../../../util/getLoginStatus.ts";
+import ProfileIconContainer from "../../UI/ProfileIconContainer/ProfileIconContainer.tsx";
+import WishlistIconContainer from "../../UI/WishlistIconContainer.tsx";
+import CartIconContainer from "../../UI/CartIconContainer.tsx";
+import MenuIcon from "../../../assets/icons/menu.png";
+import CloseWindowIcon from "../../../assets/icons/close-window.png";
+
+import MobileNavbar from "./MobileNavbar.tsx";
 
 const Navbar: React.FC = () => {
+  const location = useLocation();
+  const [isMobileNavbarOpen, setIsMobileNavbarOpen] = useState(false);
+
   const isLoggedIn = getLoginStatus();
+  const isOnAuthPages =
+    location.pathname === "/signup" || location.pathname === "/signin";
 
   return (
-    <header>
+    <header className="relative">
       <ChooseLanguage />
 
-      <nav className="navbar-main border-b-[1px] pb-3 border-gray-200">
-        <Wrapper className="flex justify-between items-center mt-7">
-          <h1 className="font-extrabold text-2xl">SnapShop</h1>
+      <nav className="navbar-main border-b-[1px] pb-1 md:pb-3 border-gray-200 pt-5 md:pt-7">
+        <Wrapper className="flex justify-between items-center">
+          <h1 className="font-extrabold text-xl md:text-2xl">SnapShop</h1>
 
-          <ul className="flex gap-8 text-md">
+          <ul className="hidden sm:flex sm:gap-4 md:gap-8 text-md">
             <li>
               <NavLink
                 to="/"
@@ -31,6 +41,7 @@ const Navbar: React.FC = () => {
                 Home
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/contact"
@@ -41,6 +52,7 @@ const Navbar: React.FC = () => {
                 Contact
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/about"
@@ -51,6 +63,7 @@ const Navbar: React.FC = () => {
                 About
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/signup"
@@ -63,14 +76,42 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
 
-          <div className="flex items-center gap-5">
+          <div className="hidden xl:flex items-center gap-5">
             <SearchBox />
-            <WishlistIcon count={2} />
-            <CartIcon count={4} />
+            {!isOnAuthPages && (
+              <>
+                <WishlistIconContainer count={2} />
+                <CartIconContainer count={4} />
+              </>
+            )}
+
             {isLoggedIn && <ProfileIconContainer />}
           </div>
+
+          {!isMobileNavbarOpen ? (
+            <img
+              src={MenuIcon}
+              alt="menu icon"
+              className="w-7 h-7 sm:w-8 sm:h-8 xl:hidden"
+              onClick={() => setIsMobileNavbarOpen(true)}
+            />
+          ) : (
+            <img
+              src={CloseWindowIcon}
+              alt="close window icon"
+              className="w-9 h-9 sm:w-10 sm:h-10 xl:hidden"
+              onClick={() => setIsMobileNavbarOpen(false)}
+            />
+          )}
         </Wrapper>
       </nav>
+
+      <MobileNavbar
+        isLoggedIn={isLoggedIn}
+        isOnAuthPages={isOnAuthPages}
+        isMobileNavbarOpen={isMobileNavbarOpen}
+        setIsMobileNavbarOpen={setIsMobileNavbarOpen}
+      />
     </header>
   );
 };
