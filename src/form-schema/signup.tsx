@@ -1,7 +1,5 @@
 import * as yup from "yup";
 
-const errorMessage = "can't leave this field empty";
-
 const signupSchema = yup.object().shape({
   username: yup
     .string()
