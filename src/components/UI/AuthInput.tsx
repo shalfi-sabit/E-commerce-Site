@@ -1,4 +1,5 @@
 import React from "react";
+import { MdErrorOutline } from "react-icons/md";
 
 interface InputProps {
   placeholder: string;
@@ -18,7 +19,7 @@ const AuthInput: React.FC<InputProps> = ({
   return (
     <>
       <input
-        className={`text-[12px] sm:text-sm lg:text-[16px] border-b-2 pb-2 border-gray-400 focus:outline-none focus:border-black ${
+        className={`text-[12px] sm:text-sm lg:text-[16px] border-b-2 pb-2 border-gray-100 focus:outline-none focus:border-black ${
           errors[name]?.message ? "" : "mb-8"
         }`}
         placeholder={placeholder}
@@ -27,9 +28,11 @@ const AuthInput: React.FC<InputProps> = ({
       />
       {errors[name]?.message ? (
         <p
-          className={`text-red-900 mt-1 ${errors[name]?.message ? "mb-5" : ""}`}
+          className={`text-red-900 text-[10px] tracking-tighter sm:text-[14px] lg:text-[14px] mt-1 flex items-center gap-1 ${
+            errors[name]?.message ? "mb-5" : ""
+          }`}
         >
-          {errors[name]?.message}
+          <MdErrorOutline /> {errors[name]?.message}
         </p>
       ) : (
         ""
