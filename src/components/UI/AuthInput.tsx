@@ -19,7 +19,7 @@ const AuthInput: React.FC<InputProps> = ({
   return (
     <>
       <input
-        className={`text-[12px] sm:text-sm lg:text-[16px] border-b-2 pb-2 border-gray-100 focus:outline-none focus:border-black ${
+        className={`text-sm lg:text-[16px] border-b-2 pb-2 border-gray-100 focus:outline-none focus:border-black ${
           errors[name]?.message ? "" : "mb-8"
         }`}
         placeholder={placeholder}
