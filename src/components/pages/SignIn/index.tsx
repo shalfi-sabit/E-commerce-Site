@@ -58,7 +58,7 @@ const SignIn = () => {
           <div className="flex mt-6">
             <FillButton text="Log in" className="w-full mb-2" />
             <button
-              className=" bg-white ml-2 text-red-900 mb-2 font-semibold text-[12px] 
+              className=" bg-white-900 ml-2 text-red-900 mb-2 font-semibold text-[12px] 
             sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 hover:shadow-md duration-200"
             >
               Forgot Password?
