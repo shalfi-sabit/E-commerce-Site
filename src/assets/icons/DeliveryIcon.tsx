@@ -3,11 +3,10 @@ import React from "react";
 const DeliveryIcon = () => {
   return (
     <svg
-      width="81"
-      height="80"
       viewBox="0 0 81 80"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-[60px] h-[61px] lg:w-[80px] lg:h-[81px]"
     >
       <path
         opacity="0.3"
