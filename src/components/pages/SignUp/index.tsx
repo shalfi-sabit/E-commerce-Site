@@ -102,7 +102,7 @@ const SignUp = () => {
           </button>
           <p className="mx-auto text-[14px] sm:text-[18px] leading-[10px] sm:leading-[14px] lg:leading-[18px]">
             Already have account?{" "}
-            <a href="#" className="underline">
+            <a href="/" className="underline">
               <strong>Log in</strong>
             </a>
           </p>
