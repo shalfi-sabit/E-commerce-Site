@@ -12,16 +12,20 @@ import FooterItemsWrapper from "./FooterItemsWrapper";
 
 const Footer = () => {
   return (
-    <footer className="bg-black-900 pt-20 text-sm md:text-[16px]">
+    <footer className="bg-black-900 pt-8 sm:pt-12 md:pt-16 lg:pt-20 text-sm md:text-[16px]">
       <Wrapper className="flex justify-between gap-8 flex-wrap text-white-900">
         <FooterItemsWrapper>
-          <h2 className="font-semibold text-2xl">Exclusive</h2>
-          <ul className="space-y-6">
+          <h2 className="font-semibold text-[24px] sm:text-[28px] lg:text-2xl mb-1 lg:mb-5">
+            Exclusive
+          </h2>
+          <ul className="space-y-2 lg:space-y-4">
             <li>Subscribe</li>
             <li>
-              <p className="w-fit">Get 10% off your first order</p>
+              <p className="w-fit text-[14px] sm:text-[18px]">
+                Get 10% off your first order
+              </p>
             </li>
-            <li className="flex border rounded border-white-900 ps-1 py-2 pr-2 w-52">
+            <li className="flex border rounded border-white-900 ps-1 py-1 pr-2 w-52">
               <input
                 className="bg-black-900 w-full focus:outline-none px-2"
                 placeholder="Enter your email"
@@ -32,62 +36,84 @@ const Footer = () => {
         </FooterItemsWrapper>
 
         <FooterItemsWrapper>
-          <h3 className="text-xl mb-8">Support</h3>
-          <ul className="space-y-4">
+          <h3 className="text-[18px] lg:text-[18px] lg:text-xl mb-1 lg:mb-5">
+            Support
+          </h3>
+          <ul className="space-y-2 lg:space-y-4">
             <li>
-              <p>111 Bijoy sarani, Dhaka</p>
-              <p>DH 1515, Bangladesh.</p>
+              <p className="text-[14px] sm:text-[18px]">
+                111 Bijoy sarani, Dhaka
+              </p>
+              <p className="text-[14px] sm:text-[18px]">DH 1515, Bangladesh.</p>
             </li>
             <li>
-              <p>exclusive@gmail.com</p>
+              <p className="text-[14px] sm:text-[18px]">exclusive@gmail.com</p>
             </li>
             <li>
-              <p>+88015-88888-9999</p>
-            </li>
-          </ul>
-        </FooterItemsWrapper>
-
-        <FooterItemsWrapper>
-          <h3 className="text-xl">Account</h3>
-          <ul className="space-y-3">
-            <li>
-              <NavLink to="/my-account">My Account</NavLink>
-            </li>
-            <li>
-              <NavLink to="/signin">Login / Register</NavLink>
-            </li>
-            <li>
-              <NavLink to="/cart">Cart</NavLink>
-            </li>
-            <li>
-              <NavLink to="/wishlist">Wishlist</NavLink>
-            </li>
-            <li>
-              <NavLink to="/">Shop</NavLink>
+              <p className="text-[14px] sm:text-[18px]">+88015-88888-9999</p>
             </li>
           </ul>
         </FooterItemsWrapper>
 
         <FooterItemsWrapper>
-          <h3 className="text-xl mb-7">Quick Link</h3>
-          <ul className="space-y-4">
+          <h3 className="text-[18px] lg:text-xl mb-1 lg:mb-5">Account</h3>
+          <ul className="space-y-2 lg:space-y-4">
             <li>
-              <NavLink to="/">Privacy Policy</NavLink>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/my-account">
+                My Account
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/">Terms of Use</NavLink>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/signin">
+                Login / Register
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/">FAQ</NavLink>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/cart">
+                Cart
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/wishlist">
+                Wishlist
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/">
+                Shop
+              </NavLink>
             </li>
           </ul>
         </FooterItemsWrapper>
 
         <FooterItemsWrapper>
-          <h3 className="text-xl">Download App</h3>
+          <h3 className="text-[18px] lg:text-xl mb-1 lg:mb-6">Quick Link</h3>
+          <ul className="space-y-2 lg:space-y-4">
+            <li>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/">
+                Privacy Policy
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/">
+                Terms of Use
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/">
+                FAQ
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="text-[14px] sm:text-[18px]" to="/contact">
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </FooterItemsWrapper>
+
+        <FooterItemsWrapper>
+          <h3 className="text-[18px] lg:text-xl mb-1 lg:mb-5">Download App</h3>
           <div>
             <small className="text-gray-300 mb-2">
               Save $3 with App New User Only
@@ -112,7 +138,7 @@ const Footer = () => {
           </div>
         </FooterItemsWrapper>
       </Wrapper>
-      <p className="text-gray-700 text-center mt-10 border-t-[1px] border-gray-600 py-4">
+      <p className="text-gray-700 text-center mt-10 border-t-[1px] border-gray-600 py-4 text-[14px] sm:text-[18px]">
         © Copyright Brain Station 2024. All Rights Reserved.
       </p>
     </footer>
