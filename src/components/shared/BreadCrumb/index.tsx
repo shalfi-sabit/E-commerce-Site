@@ -17,20 +17,21 @@ const BreadCrumb: React.FC = () => {
   ];
 
   if (location.pathname !== "/") {
-    location.pathname
+    const pathCrumbs = location.pathname
       .split("/")
       .filter((crumb) => crumb !== "")
-      .forEach((crumb, index) => {
+      .map((crumb, index, array) => {
         currentLink += `/${crumb}`;
-        crumbs.push(
+        return (
           <BreadcrumbItem
             key={index}
             link={currentLink}
             crumb={crumb}
-            isLast={index === crumbs.length - 1}
+            isLast={index === array.length - 1}
           />
         );
       });
+    crumbs.push(...pathCrumbs);
   }
 
   return (
