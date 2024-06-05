@@ -12,8 +12,8 @@ import FooterItemsWrapper from "./FooterItemsWrapper";
 
 const Footer = () => {
   return (
-    <footer className="bg-black pt-20 text-sm md:text-[16px]">
-      <Wrapper className="flex justify-between gap-8 flex-wrap text-white">
+    <footer className="bg-black-900 pt-20 text-sm md:text-[16px]">
+      <Wrapper className="flex justify-between gap-8 flex-wrap text-white-900">
         <FooterItemsWrapper>
           <h2 className="font-semibold text-2xl">Exclusive</h2>
           <ul className="space-y-6">
@@ -21,9 +21,9 @@ const Footer = () => {
             <li>
               <p className="w-fit">Get 10% off your first order</p>
             </li>
-            <li className="flex border rounded border-white ps-1 py-2 pr-2 w-52">
+            <li className="flex border rounded border-white-900 ps-1 py-2 pr-2 w-52">
               <input
-                className="bg-black w-full focus:outline-none px-2"
+                className="bg-black-900 w-full focus:outline-none px-2"
                 placeholder="Enter your email"
               />
               <SendIcon />

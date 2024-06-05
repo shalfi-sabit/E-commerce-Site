@@ -1,14 +1,11 @@
-import React from "react";
-
-const CartIcon = () => {
+const CartIcon: React.FC = () => {
   return (
     <svg
-      width="32"
-      height="32"
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       tabIndex={0}
+      className="focus:outline-none cursor-pointer h-7 w-7 sm:h-8 sm:w-8"
     >
       <path
         d="M11 27C11.5523 27 12 26.5523 12 26C12 25.4477 11.5523 25 11 25C10.4477 25 10 25.4477 10 26C10 26.5523 10.4477 27 11 27Z"
