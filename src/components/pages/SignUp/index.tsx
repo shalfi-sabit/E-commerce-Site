@@ -96,7 +96,11 @@ const SignUp = () => {
           <FillButton text="Create Account" className="w-full mb-2" />
         </form>
         <div className="flex flex-col gap-8 text-[12px] sm:text-sm lg:text-[16px]">
-          <button className="flex items-center justify-center gap-2 w-full border-2  rounded-md hover:bg-gray-100 font-semibold text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 hover:shadow-md duration-200">
+          <button
+            className="flex items-center justify-center gap-2 w-full border-2 
+          rounded-md hover:bg-gray-100 font-semibold text-[12px] sm:text-sm lg:text-[16px] 
+          px-5 sm:px-6 lg:px-7 py-1 hover:shadow-md duration-200"
+          >
             <span className="text-[20px] sm:text-[20px] lg:text-[25px]">
               <FcGoogle />
             </span>
