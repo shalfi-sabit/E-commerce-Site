@@ -10,6 +10,8 @@ import Wrapper from "../../UI/Wrapper";
 import signupSchema from "../../../form-schema/signup";
 import SignUpProps from "../../../models/signupProps";
 
+import { NavLink } from "react-router-dom";
+
 const SignUp = () => {
   const {
     handleSubmit,
@@ -102,9 +104,9 @@ const SignUp = () => {
           </button>
           <p className="mx-auto text-[14px] sm:text-[18px] leading-[10px] sm:leading-[14px] lg:leading-[18px]">
             Already have account?{" "}
-            <a href="/" className="underline">
+            <NavLink to="/signin" className="underline">
               <strong>Log in</strong>
-            </a>
+            </NavLink>
           </p>
         </div>
       </div>
