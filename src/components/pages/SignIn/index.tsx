@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import FillButton from "../../UI/Button/FillButton";
-import AuthInput from "../../UI/AuthInput";
+import AuthInput from "../../UI/Input/AuthInput";
 import AuthImage from "../../../assets/images/sideImage.png";
 import Wrapper from "../../UI/Wrapper";
 import SignInProps from "../../../models/signinProps";
