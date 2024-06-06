@@ -33,7 +33,9 @@ const index: React.FC<productCardProps> = ({
       onMouseOut={handleMouseOut}
     >
       <div className="mx-auto w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 flex justify-center items-center mb-2 sm:mb-3 relative rounded overflow-hidden">
-        <img src={imageSource} alt="product card" />
+        <div className="w-24 sm:w-28 md:w-32">
+          <img src={imageSource} alt="product card" />
+        </div>
 
         {isHovered && (
           <div className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer">
