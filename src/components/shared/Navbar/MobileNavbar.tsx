@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { NavLink } from "react-router-dom";
 
 import SearchBox from "./SearchBox";
@@ -19,16 +19,26 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
   isMobileNavbarOpen,
   setIsMobileNavbarOpen,
 }) => {
+  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
+    setIsMobileNavbarOpen(false);
+  };
+
+  const handleMobileNavbarClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <div
       className={`w-screen h-screen fixed bg-gray-200 right-0 z-50  xl:hidden flex justify-end  ${
         isMobileNavbarOpen ? "" : "hidden"
       }`}
+      onClick={handleBackdropClick}
     >
       <nav
         className={`bg-white-900 navbar-mobile w-72 sm:w-80 h-screen top-0 p-5 flex flex-col gap-4 shadow-2xl text-[14px] sm:text-[16px] ${
           isMobileNavbarOpen ? "right-0" : "right-[-320px]"
         } duration-1000`}
+        onClick={handleMobileNavbarClick}
       >
         <ul className="flex flex-col gap-3 text-md mb-6 sm:hidden">
           <li>
@@ -64,16 +74,18 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
             </NavLink>
           </li>
 
-          <li>
-            <NavLink
-              to="/signup"
-              className={({ isActive }) =>
-                isActive ? "underline underline-offset-4" : ""
-              }
-            >
-              Sign Up
-            </NavLink>
-          </li>
+          {!isLoggedIn && (
+            <li>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) =>
+                  isActive ? "underline underline-offset-4" : ""
+                }
+              >
+                Sign Up
+              </NavLink>
+            </li>
+          )}
         </ul>
 
         <div className="flex items-center gap-3">

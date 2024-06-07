@@ -1,11 +1,11 @@
 import getLoginStatus from "../../../utils/getLoginStatus";
-import { json } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 const Loader = () => {
   const isLoggedIn = getLoginStatus();
 
-  if (isLoggedIn) {
-    return json({ showAlreadyLoggedInMessage: true });
+  if (!isLoggedIn) {
+    return redirect("/signin");
   }
 
   return null;
