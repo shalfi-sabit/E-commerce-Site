@@ -7,11 +7,20 @@ interface BreadcrumbItemProps {
   isLast: boolean;
 }
 
+const transformCrumb = (crumb: string) => {
+  return crumb
+    .split("-") // Split the string by hyphens
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+    .join(" "); // Join them back with spaces
+};
+
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
   link,
   crumb,
   isLast,
 }) => {
+  const transformedCrumb = transformCrumb(crumb);
+
   return (
     <div className="flex items-center">
       <NavLink
@@ -20,7 +29,7 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
           isActive ? "text-black-900" : "text-gray-500"
         }
       >
-        {crumb.charAt(0).toUpperCase() + crumb.slice(1)}
+        {transformedCrumb}
       </NavLink>
       {!isLast && <span className="mx-2 text-gray-500">/</span>}
     </div>
