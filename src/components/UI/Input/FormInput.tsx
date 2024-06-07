@@ -1,8 +1,9 @@
-import { useOnFocus } from "../../../hooks/useOnFocus";
 import { MdErrorOutline } from "react-icons/md";
 
+import { useOnFocus } from "../../../hooks/useOnFocus";
+
 interface FormInputProps {
-  className: string;
+  className?: string;
   label?: string;
   placeholder?: string;
   type?: string;
@@ -10,6 +11,7 @@ interface FormInputProps {
   required?: boolean;
   register: any;
   errors?: any;
+  defaultValue?: string | number;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -21,6 +23,7 @@ const FormInput: React.FC<FormInputProps> = ({
   name,
   register,
   errors,
+  defaultValue,
 }) => {
   const { isFocused, handleFocus, handleBlur } = useOnFocus();
 
@@ -44,6 +47,7 @@ const FormInput: React.FC<FormInputProps> = ({
         {...register(name)}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        defaultValue={defaultValue}
       />
       {errors[name]?.message ? (
         <p
