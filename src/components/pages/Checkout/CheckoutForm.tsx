@@ -1,35 +1,102 @@
-import { useForm } from "react-hook-form";
 import FormInput from "../../UI/Input/FormInput";
-import { Form } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Button from "../../UI/Button/FillButton";
-import checkoutSchema from "../../../form-schema/checkoutSchema";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { CheckoutFormData } from "./index";
 
-const CheckoutForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(checkoutSchema),
-  });
+interface CheckoutFormProps {
+  register: UseFormRegister<CheckoutFormData>;
+  errors: FieldErrors<CheckoutFormData>;
+  setSaveInformation: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const onSubmit = (data: {}) => {
-    console.log(data);
-    console.log(errors);
+const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  register,
+  errors,
+  setSaveInformation,
+}) => {
+  const handleSaveInfoClick = () => {
+    setSaveInformation((prevState: boolean) => !prevState);
   };
+
+  let hasSavedData = localStorage.getItem("billingDetails");
+  let savedData = null;
+  if (hasSavedData) {
+    savedData = JSON.parse(hasSavedData);
+  }
+
   return (
-    <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          label="First Name"
-          required
-          name="firstname"
-          register={register}
-          errors={errors}
+    <div className="w-full">
+      <h1 className="mb-5 text-[20px] md:text-[25px] lg:text-3xl font-medium">
+        Billing Details
+      </h1>
+      <FormInput
+        label="First Name"
+        required
+        name="firstname"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.firstname || ""}
+      />
+      <FormInput
+        label="Company Name"
+        name="companyname"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.companyname || ""}
+      />
+      <FormInput
+        label="Street Address"
+        required
+        name="streetaddress"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.streetaddress || ""}
+      />
+      <FormInput
+        label="Apartment, floor, etc. (optional)"
+        name="apartment"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.apartment || ""}
+      />
+      <FormInput
+        label="Town/City"
+        required
+        name="city"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.city || ""}
+      />
+      <FormInput
+        label="Phone Number"
+        required
+        name="phonenumber"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.phonenumber || ""}
+      />
+      <FormInput
+        label="Email Address"
+        required
+        name="email"
+        register={register}
+        errors={errors}
+        defaultValue={savedData?.email || ""}
+      />
+      <div className="flex">
+        <input
+          className="text-red-400 mr-3"
+          type="checkbox"
+          id="save-information-checkbox"
+          name="save-information-checkbox"
+          onClick={handleSaveInfoClick}
         />
-        <Button type="submit" text="Place Order" />
-      </Form>
+        <label
+          className="text-[10px] md:text-[12px] lg:text-sm font-medium"
+          htmlFor="save-information-checkbox"
+        >
+          Save this information for faster check-out next time
+        </label>
+      </div>
     </div>
   );
 };
