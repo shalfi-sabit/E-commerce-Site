@@ -12,9 +12,9 @@ const DeleteIcon = () => {
       <path
         d="M25 10.5714H10.3333L11.6667 26H22.3333L23.6667 10.5714H9M17 14.4286V22.1429M20.3333 14.4286L19.6667 22.1429M13.6667 14.4286L14.3333 22.1429M14.3333 10.5714L15 8H19L19.6667 10.5714"
         stroke="black"
-        stroke-width="1.56"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.56"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

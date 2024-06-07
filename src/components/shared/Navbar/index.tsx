@@ -73,16 +73,18 @@ const Navbar: React.FC = () => {
                 </NavLink>
               </li>
 
-              <li>
-                <NavLink
-                  to="/signup"
-                  className={({ isActive }) =>
-                    isActive ? "underline underline-offset-4" : ""
-                  }
-                >
-                  Sign Up
-                </NavLink>
-              </li>
+              {!isLoggedIn && (
+                <li>
+                  <NavLink
+                    to="/signup"
+                    className={({ isActive }) =>
+                      isActive ? "underline underline-offset-4" : ""
+                    }
+                  >
+                    Sign Up
+                  </NavLink>
+                </li>
+              )}
             </ul>
 
             <div className="hidden xl:flex items-center gap-5">
