@@ -39,9 +39,7 @@ const FormInput: React.FC<FormInputProps> = ({
         </label>
       )}
       <input
-        className={`bg-gray-100 rounded focus:outline-none placeholder-gray-800 focus:text-black-900 text-[10px] md:text-[12px] lg:text-sm p-2 md:p-3 ${
-          errors[name]?.message ? "" : "mb-8"
-        }`}
+        className={`bg-gray-100 rounded focus:outline-none placeholder-gray-800 focus:text-black-900 text-[10px] md:text-[12px] lg:text-sm p-2 md:p-3 `}
         placeholder={placeholder}
         type={type}
         {...register(name)}
@@ -51,9 +49,7 @@ const FormInput: React.FC<FormInputProps> = ({
       />
       {errors[name]?.message ? (
         <p
-          className={`text-red-900 tracking-tighter text-[10px] md:text-[12px] lg:text-sm mt-1 flex items-center gap-1 ${
-            errors[name]?.message ? "mb-5" : ""
-          }`}
+          className={`text-red-900 tracking-tighter text-[10px] md:text-[12px] lg:text-sm mt-1 flex items-center gap-1 `}
         >
           <MdErrorOutline /> {errors[name]?.message}
         </p>

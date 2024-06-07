@@ -6,12 +6,14 @@ interface CheckoutFormProps {
   register: UseFormRegister<CheckoutFormData>;
   errors: FieldErrors<CheckoutFormData>;
   setSaveInformation: React.Dispatch<React.SetStateAction<boolean>>;
+  className?: string;
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({
   register,
   errors,
   setSaveInformation,
+  className,
 }) => {
   const handleSaveInfoClick = () => {
     setSaveInformation((prevState: boolean) => !prevState);
@@ -24,10 +26,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   }
 
   return (
-    <div className="w-full">
-      <h1 className="mb-5 text-[20px] md:text-[25px] lg:text-3xl font-medium">
-        Billing Details
-      </h1>
+    <div className={`w-full flex flex-col gap-0 ${className}`}>
       <FormInput
         label="First Name"
         required
