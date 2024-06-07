@@ -6,7 +6,12 @@ import AuthImage from "../../../assets/images/sideImage.png";
 import Wrapper from "../../UI/Wrapper";
 import SignInProps from "../../../models/signinProps";
 import SignInSchema from "../../../form-schema/signin";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLoaderData } from "react-router-dom";
+import AlreadyLoggedInMessage from "../../UI/AlreadyLoggedInMessage";
+
+type loaderDataType = {
+  showAlreadyLoggedInMessage?: boolean;
+};
 
 const SignIn = () => {
   const {
@@ -17,9 +22,15 @@ const SignIn = () => {
     resolver: yupResolver<SignInProps>(SignInSchema),
   });
 
+  const loaderData = (useLoaderData() as loaderDataType) || {};
+
   const onSubmit = (data: {}) => {
     console.log(data);
   };
+
+  if (loaderData.showAlreadyLoggedInMessage) {
+    return <AlreadyLoggedInMessage />;
+  }
 
   return (
     <Wrapper className=" flex justify-around w-3/4  my-10">
@@ -57,18 +68,19 @@ const SignIn = () => {
           />
           <div className="flex mt-6">
             <FillButton text="Log in" className="w-full mb-2" />
-            <button
+            <Link
+              to="/signin"
               className=" bg-white-900 ml-2 text-red-900 mb-2 font-semibold text-[12px] 
-            sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 hover:shadow-md duration-200"
+            sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2"
             >
               Forgot Password?
-            </button>
+            </Link>
           </div>
         </form>
         <p className="mx-auto text-[14px] sm:text-[18px] leading-[10px] sm:leading-[14px] lg:leading-[18px] mt-8">
           Don't have an account?{" "}
           <NavLink to="/signup" className="underline">
-            <strong>Sign up</strong>
+            <span className="font-semibold">Sign up</span>
           </NavLink>
         </p>
       </div>

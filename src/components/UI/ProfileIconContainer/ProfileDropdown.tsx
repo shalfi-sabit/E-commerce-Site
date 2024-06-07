@@ -12,7 +12,7 @@ const ProfileDropdown = () => {
       <DropdownRow
         image={<ProfileIconOutlinedWhite />}
         title={"Manage My Account"}
-        to="#"
+        to="/account"
         className="ml-[-2.5px]"
       />
       <DropdownRow image={<MallbagIcon />} title={"My Order"} to="#" />

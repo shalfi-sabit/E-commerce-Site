@@ -14,34 +14,34 @@ const HeadsetIcon = () => {
         fill="#2F2E30"
       />
       <circle cx="40" cy="40" r="29" fill="black" />
-      <g clip-path="url(#clip0_2841_4051)">
+      <g clipPath="url(#clip0_2841_4051)">
         <path
           d="M33.3332 44.9998C33.3332 43.1589 31.8408 41.6665 29.9998 41.6665C28.1589 41.6665 26.6665 43.1589 26.6665 44.9998V48.3332C26.6665 50.1741 28.1589 51.6665 29.9998 51.6665C31.8408 51.6665 33.3332 50.1741 33.3332 48.3332V44.9998Z"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M53.3332 44.9998C53.3332 43.1589 51.8408 41.6665 49.9998 41.6665C48.1589 41.6665 46.6665 43.1589 46.6665 44.9998V48.3332C46.6665 50.1741 48.1589 51.6665 49.9998 51.6665C51.8408 51.6665 53.3332 50.1741 53.3332 48.3332V44.9998Z"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M26.6665 44.9998V39.9998C26.6665 36.4636 28.0713 33.0722 30.5717 30.5717C33.0722 28.0713 36.4636 26.6665 39.9998 26.6665C43.5361 26.6665 46.9274 28.0713 49.4279 30.5717C51.9284 33.0722 53.3332 36.4636 53.3332 39.9998V44.9998"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M50 51.6665C50 52.9926 48.9464 54.2644 47.0711 55.202C45.1957 56.1397 42.6522 56.6665 40 56.6665"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>

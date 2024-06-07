@@ -1,5 +1,5 @@
 import CircularCounterIcon from "./CircularCounterIcon";
-import CartIcon from "../../assets/icons/CartIcon";
+import CartIcon from "../../assets/icons/CartIconBlack";
 import { Link } from "react-router-dom";
 
 type CartIconProps = {
