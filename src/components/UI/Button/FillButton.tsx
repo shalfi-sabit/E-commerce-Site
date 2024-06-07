@@ -2,15 +2,17 @@ import React from "react";
 
 interface ButtonProps {
   text: string;
+  type?: "submit";
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, className }) => {
+const Button: React.FC<ButtonProps> = ({ text, type, className }) => {
   return (
     <div>
       <button
+        type={type}
         className={`bg-red-900 hover:bg-red-400 rounded text-white-900 
-    font-semibold text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 hover:shadow-md duration-200 ${className}`}
+    font-semibold text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-[8px] sm:py-[10px] lg:py-3 hover:shadow-md duration-200 ${className}`}
       >
         {text}
       </button>
