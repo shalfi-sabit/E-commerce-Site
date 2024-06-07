@@ -138,7 +138,7 @@ const Footer = () => {
           </div>
         </FooterItemsWrapper>
       </Wrapper>
-      <p className="text-gray-700 text-center mt-10 border-t-[1px] border-gray-600 py-4 text-[14px] sm:text-[18px]">
+      <p className="text-gray-700 text-center mt-10 border-t-[1px] border-gray-700 py-4 text-[14px] sm:text-[18px]">
         © Copyright Brain Station 2024. All Rights Reserved.
       </p>
     </footer>
