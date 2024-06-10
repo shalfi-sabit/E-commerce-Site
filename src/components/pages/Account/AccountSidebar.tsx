@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const AccountSidebar = () => {
   return (
-    <div className="text-[12px] md:text-sm lg:text-[16px]">
+    <aside className="hidden lg:block text-[12px] md:text-sm lg:text-[16px] text-nowrap">
       <p className=" font-semibold mb-1 md:mb-2 lg:mb-3">Manage My Account</p>
 
       <ul className="mb-1 md:mb-2 lg:mb-3 flex flex-col gap-1 md:gap-2 lg:gap-3">
@@ -67,7 +67,7 @@ const AccountSidebar = () => {
       </ul>
 
       <p className=" font-semibold mb-1 md:mb-2 lg:mb-3">My WishList</p>
-    </div>
+    </aside>
   );
 };
 

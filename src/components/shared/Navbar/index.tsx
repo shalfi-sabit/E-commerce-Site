@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import Wrapper from "../../UI/Wrapper.tsx";
@@ -13,22 +12,20 @@ import MenuIcon from "../../../assets/icons/menu.png";
 import CloseWindowIcon from "../../../assets/icons/close-window.png";
 
 import MobileNavbar from "./MobileNavbar.tsx";
+import useMobileSidebar from "../../../hooks/useMobileSidebar.tsx";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
-  const [isMobileNavbarOpen, setIsMobileNavbarOpen] = useState(false);
+  const {
+    isMobileSidebarOpen: isMobileNavbarOpen,
+    setIsMobileSidebarOpen: setIsMobileNavbarOpen,
+    handleBackdropClick,
+    handleMobileSidebarClick: handleMobileNavbarClick,
+  } = useMobileSidebar();
 
   const isLoggedIn = getLoginStatus();
   const isOnAuthPages =
     location.pathname === "/signup" || location.pathname === "/signin";
-
-  useEffect(() => {
-    if (isMobileNavbarOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [isMobileNavbarOpen]);
 
   return (
     <header className="top-0 left-0 w-full z-10">
@@ -122,6 +119,8 @@ const Navbar: React.FC = () => {
           isOnAuthPages={isOnAuthPages}
           isMobileNavbarOpen={isMobileNavbarOpen}
           setIsMobileNavbarOpen={setIsMobileNavbarOpen}
+          handleBackdropClick={handleBackdropClick}
+          handleMobileNavbarClick={handleMobileNavbarClick}
         />
       </div>
     </header>

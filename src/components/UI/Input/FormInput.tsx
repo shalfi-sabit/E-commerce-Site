@@ -12,6 +12,8 @@ interface FormInputProps {
   register: any;
   errors?: any;
   defaultValue?: string | number;
+  labelIsblack?: boolean;
+  inputStyle?: string;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -24,6 +26,8 @@ const FormInput: React.FC<FormInputProps> = ({
   register,
   errors,
   defaultValue,
+  labelIsblack,
+  inputStyle,
 }) => {
   const { isFocused, handleFocus, handleBlur } = useOnFocus();
 
@@ -32,7 +36,9 @@ const FormInput: React.FC<FormInputProps> = ({
       {label && (
         <label
           className={`${
-            isFocused ? "text-black-900" : "text-gray-500"
+            isFocused
+              ? "text-black-900"
+              : `${labelIsblack ? "text-black-900" : "text-gray-500"}`
           } text-[10px] md:text-[12px] lg:text-sm font-medium`}
         >
           {label} {required ? <span className="text-red-900">*</span> : ""}
@@ -40,7 +46,7 @@ const FormInput: React.FC<FormInputProps> = ({
       )}
       <input
         className={`bg-gray-100 rounded focus:outline-none placeholder-gray-800 focus:text-black-900 text-[10px] md:text-[12px] lg:text-sm p-2 md:p-3 ${
-          errors[name]?.message ? "" : "mb-8"
+          errors[name]?.message ? "" : `${inputStyle}`
         }`}
         placeholder={placeholder}
         type={type}
@@ -52,7 +58,7 @@ const FormInput: React.FC<FormInputProps> = ({
       {errors[name]?.message ? (
         <p
           className={`text-red-900 tracking-tighter text-[10px] md:text-[12px] lg:text-sm mt-1 flex items-center gap-1 ${
-            errors[name]?.message ? "mb-5" : ""
+            errors[name]?.message ? "mb-3 md:mb-5" : ""
           }`}
         >
           <MdErrorOutline /> {errors[name]?.message}

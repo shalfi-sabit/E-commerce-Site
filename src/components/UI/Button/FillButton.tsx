@@ -12,7 +12,7 @@ const Button: React.FC<ButtonProps> = ({ text, type, className }) => {
       <button
         type={type}
         className={`bg-red-900 hover:bg-red-400 rounded text-white-900 
-    font-semibold text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-[8px] sm:py-[10px] lg:py-3 hover:shadow-md duration-200 ${className}`}
+    font-medium text-[10px] sm:text-[12px] md:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-[8px] sm:py-[10px] lg:py-3 hover:shadow-md duration-200 ${className}`}
       >
         {text}
       </button>

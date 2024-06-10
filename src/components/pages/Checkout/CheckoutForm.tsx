@@ -35,6 +35,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.firstname || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <FormInput
         label="Company Name"
@@ -42,6 +43,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.companyname || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <FormInput
         label="Street Address"
@@ -50,6 +52,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.streetaddress || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <FormInput
         label="Apartment, floor, etc. (optional)"
@@ -57,6 +60,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.apartment || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <FormInput
         label="Town/City"
@@ -65,6 +69,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.city || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <FormInput
         label="Phone Number"
@@ -73,6 +78,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.phonenumber || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <FormInput
         label="Email Address"
@@ -81,6 +87,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         register={register}
         errors={errors}
         defaultValue={savedData?.email || ""}
+        inputStyle="mb-2 sm:mb-2 md:mb-6 lg:mb-8"
       />
       <div className="flex">
         <input
