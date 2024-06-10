@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import RootLayout from "../components/pages/RootLayout";
 import Home from "../components/pages/Home";
+import homeLoader from "../components/pages/Home/loader";
 import SignIn from "../components/pages/SignIn";
 import SignUp from "../components/pages/SignUp";
 import authLoader from "../components/pages/SignUp/loader";
@@ -20,7 +21,7 @@ export const routes = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorBoundary />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Home />, loader: homeLoader },
       { path: "signin", element: <SignIn />, loader: authLoader },
       { path: "signup", element: <SignUp />, loader: authLoader },
       { path: "contact", element: <Contact /> },
