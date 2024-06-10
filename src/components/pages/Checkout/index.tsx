@@ -9,6 +9,7 @@ import checkoutSchema from "../../../form-schema/checkoutSchema";
 import FillButton from "../../UI/Button/FillButton";
 import CheckoutSummary from "./CheckoutSummary";
 import BreadCrumb from "../../shared/BreadCrumb";
+import cartItems from "../../../data/dummyCartItems";
 
 export interface CheckoutFormData {
   firstname: string;
@@ -22,6 +23,15 @@ export interface CheckoutFormData {
 
 const Checkout: React.FC = () => {
   const [saveInformation, setSaveInformation] = useState<boolean>(false);
+  const [isCashSelected, setIsCashSelected] = useState(true);
+
+  const subTotal = cartItems.reduce((accumulator, cartItem) => {
+    return parseFloat(
+      (accumulator + cartItem.price * cartItem.count).toFixed(2)
+    );
+  }, 0);
+
+  const shippingCharge = 30;
 
   const {
     register,
@@ -32,7 +42,20 @@ const Checkout: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
-    console.log(saveInformation, data);
+    const outputData = {
+      data,
+      cartItems,
+      saveInformation: saveInformation
+        ? "Save Information"
+        : "Don't save information",
+      shippingCharge: shippingCharge,
+      subTotal: subTotal,
+      paymentMethod: isCashSelected ? "Cash" : "Bank",
+      total: subTotal + shippingCharge,
+    };
+
+    console.log(outputData);
+
     if (saveInformation && Object.keys(errors).length === 0) {
       localStorage.setItem("billingDetails", JSON.stringify(data));
     }
@@ -52,11 +75,17 @@ const Checkout: React.FC = () => {
           <CheckoutForm
             register={register}
             errors={errors}
+            saveInformation={saveInformation}
             setSaveInformation={setSaveInformation}
             className="sm:w-[42%] lg:w-[40%]"
           />
-          <div className="sm:w-[53%] lg:-w[50%">
-            <CheckoutSummary />
+          <div className="sm:w-[53%] lg:-w[50%] flex flex-col gap-2 md:gap-4 lg:gap-6">
+            <CheckoutSummary
+              isCashSelected={isCashSelected}
+              setIsCashSelected={setIsCashSelected}
+              subTotal={subTotal}
+              shippingCharge={shippingCharge}
+            />
             <FillButton type="submit" text="Place Order" />
           </div>
         </Form>
