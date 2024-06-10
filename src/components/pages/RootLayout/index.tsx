@@ -1,13 +1,16 @@
-import { Outlet } from "react-router-dom";
 import Navbar from "../../shared/Navbar";
-import Carousel from "../../Carousel";
+import Snackbar from "../../Snackbar";
+import { Outlet } from "react-router-dom";
+import Footer from "../../shared/Footer";
 
 const RootLayout = () => {
   return (
     <main>
       <Navbar />
-      <Carousel />
+      <Snackbar />
+
       <Outlet></Outlet>
+      <Footer />
     </main>
   );
 };

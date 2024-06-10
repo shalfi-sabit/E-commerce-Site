@@ -3,19 +3,18 @@ import React from "react";
 const RightArrowIcon = () => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      viewBox="0 0 46 46"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]"
+      className="w-[26px] h-[26px] sm:w-[32px] sm:h-[32px] lg:w-[38px] lg:h-[38px] xl:w-[44px] xl:h-[44px]"
     >
+      <circle cx="23" cy="23" r="23" fill="#F5F5F5" />
       <path
-        d="M3.5 12H20M20 12L13 5M20 12L13 19"
-        stroke="#FAFAFA"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        d="M14.5 23H31M31 23L24 16M31 23L24 30"
+        stroke="black"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

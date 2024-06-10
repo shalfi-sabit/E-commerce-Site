@@ -1,12 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import FillButton from "../../UI/Button/FillButton";
-import AuthInput from "../../UI/AuthInput";
+import AuthInput from "../../UI/Input/AuthInput";
 import AuthImage from "../../../assets/images/sideImage.png";
 import Wrapper from "../../UI/Wrapper";
 import SignInProps from "../../../models/signinProps";
 import SignInSchema from "../../../form-schema/signin";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLoaderData } from "react-router-dom";
+import AlreadyLoggedInMessage from "../../UI/AlreadyLoggedInMessage";
+
+type loaderDataType = {
+  showAlreadyLoggedInMessage?: boolean;
+};
 
 const SignIn = () => {
   const {
@@ -17,9 +22,15 @@ const SignIn = () => {
     resolver: yupResolver<SignInProps>(SignInSchema),
   });
 
+  const loaderData = (useLoaderData() as loaderDataType) || {};
+
   const onSubmit = (data: {}) => {
     console.log(data);
   };
+
+  if (loaderData.showAlreadyLoggedInMessage) {
+    return <AlreadyLoggedInMessage />;
+  }
 
   return (
     <Wrapper className=" flex justify-around w-3/4  my-10">
@@ -69,7 +80,7 @@ const SignIn = () => {
         <p className="mx-auto text-[14px] sm:text-[18px] leading-[10px] sm:leading-[14px] lg:leading-[18px] mt-8">
           Don't have an account?{" "}
           <NavLink to="/signup" className="underline">
-            <strong>Sign up</strong>
+            <span className="font-semibold">Sign up</span>
           </NavLink>
         </p>
       </div>

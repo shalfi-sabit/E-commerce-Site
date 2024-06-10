@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type dropdownRowProps = {
   image: React.ReactNode;
@@ -14,14 +14,20 @@ const DropdownRow: React.FC<dropdownRowProps> = ({
   to,
   className,
 }) => {
+  const navigate = useNavigate();
+
+  const handleDropdownRowClick = () => {
+    navigate(to);
+  };
+
   return (
-    <NavLink
-      to={to}
-      className={`w-full font-light text-nowrap flex items-center justify-start gap-3 ${className}`}
+    <div
+      className={`w-full font-light text-nowrap flex items-center justify-start gap-3 cursor-pointer ${className}`}
+      onClick={handleDropdownRowClick}
     >
       {image}
       {title}
-    </NavLink>
+    </div>
   );
 };
 
