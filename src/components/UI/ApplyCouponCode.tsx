@@ -26,7 +26,7 @@ const ApplyCouponCode: React.FC<applyCouponCodeProps> = ({
         type="button"
         className="w-fit"
         text="Apply Coupon"
-        disabled={isCouponButtonDisabled}
+        isCouponButtonDisabled={isCouponButtonDisabled}
       />
     </div>
   );

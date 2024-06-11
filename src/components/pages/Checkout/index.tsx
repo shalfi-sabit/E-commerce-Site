@@ -30,6 +30,8 @@ const Checkout: React.FC = () => {
   const [isCashSelected, setIsCashSelected] = useState<boolean>(true);
   const [couponCode, setCouponCode] = useState<string>("");
   const [isCouponButtonDisabled, setIsCouponButtonDisabled] = useState(false);
+  const [isPlaceOrderButtonDisabled, setIsPlaceOrderButtonDisabled] =
+    useState(false);
 
   const initialSubtotal = cartItems.reduce((accumulator, cartItem) => {
     return parseFloat(
@@ -59,6 +61,13 @@ const Checkout: React.FC = () => {
     if (saveInformation && Object.keys(errors).length === 0) {
       localStorage.setItem("billingDetails", JSON.stringify(data));
     }
+    setIsPlaceOrderButtonDisabled(true);
+    dispatch(
+      snackbarActions.handleSnackbarOpen({
+        severity: "success",
+        message: "Your Order has been placed",
+      })
+    );
   };
 
   const handleApplyCouponCode = () => {
@@ -116,7 +125,12 @@ const Checkout: React.FC = () => {
               handleApplyCouponCode={handleApplyCouponCode}
               isCouponButtonDisabled={isCouponButtonDisabled}
             />
-            <FillButton type="submit" text="Place Order" className="w-fit" />
+            <FillButton
+              isPlaceOrderButtonDisabled={isPlaceOrderButtonDisabled}
+              type="submit"
+              text="Place Order"
+              className="w-fit"
+            />
           </div>
         </Form>
       </Wrapper>
