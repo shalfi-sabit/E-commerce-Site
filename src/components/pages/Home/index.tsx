@@ -1,12 +1,12 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
-import product from "../../../models/product";
-
+import FlashSale from "../../FlashSales";
+import TopRatedProducts from "../../TopRatedProducts";
 const Home = () => {
-  const loaderData = useLoaderData();
-  console.log("loaderData: ", loaderData);
-
-  return <div>I'm Home Page</div>;
+  return (
+    <main className="overflow-x-hidden">
+      <FlashSale />
+      <TopRatedProducts />
+    </main>
+  );
 };
 
 export default Home;

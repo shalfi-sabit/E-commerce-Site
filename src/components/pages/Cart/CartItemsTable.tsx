@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import cartItems from "../../../data/dummyCartItems";
 import truncateTitle from "../../../utils/truncateTitle";
 import RemoveButtonContainer from "../../UI/RemoveButtonContainer";
@@ -17,6 +18,7 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
   quantities,
   onHandleQuantityChange,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-full">
       <table className="table-fixed w-full text-xs sm:text-[14px] md:text-[16px] leading-1 border-separate border-spacing-y-10">
@@ -62,7 +64,10 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
         </tbody>
       </table>
       <div className="flex justify-between">
-        <OutlinedButton text="Return To Shop"></OutlinedButton>
+        <OutlinedButton
+          text="Return To Shop"
+          onClick={() => navigate("/")}
+        ></OutlinedButton>
         <OutlinedButton text="Update Cart"></OutlinedButton>
       </div>
     </div>

@@ -14,6 +14,7 @@ import ErrorBoundary from "../components/pages/Error";
 import Wishlist from "../components/pages/Wishlist";
 import Cart from "../components/pages/Cart";
 import Checkout from "../components/pages/Checkout";
+import ExploreAllProducts from "../components/pages/ExploreAllProducts";
 
 export const routes = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const routes = createBrowserRouter([
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout />, loader: notLoggedInLoader },
+      { path: "products", element: <ExploreAllProducts /> },
     ],
   },
 ]);
