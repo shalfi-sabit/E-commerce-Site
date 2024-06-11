@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import SectionHeader from "../UI/SectionHeader";
 import SectionTitle from "../UI/SectionTitle";
 import Timer from "./Timer";
@@ -12,6 +14,7 @@ import FillButton from "../UI/Button/FillButton";
 
 const index = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const scroll = (scrollOffset: number) => {
     if (scrollContainerRef.current) {
@@ -33,7 +36,7 @@ const index = () => {
   };
 
   return (
-    <section className="m-8 sm:m-10 md:m-16 lg:m-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7 ">
+    <section className="m-8 sm:m-10 md:m-16 lg:m-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
       <SectionHeader sectionHeader="Today's" />
       <SectionTitle text="Flash Sales" timer={<Timer />}>
         <ArrowButtons
@@ -64,7 +67,13 @@ const index = () => {
           ))}
         </div>
         <div className="flex justify-center items-center mt-6 sm:mt-7 md:mt-8">
-          <FillButton text="View All Products" className="w-fit" />
+          <FillButton
+            onClick={() => {
+              navigate("/products");
+            }}
+            text="View All Products"
+            className="w-fit"
+          />
         </div>
       </Wrapper>
     </section>

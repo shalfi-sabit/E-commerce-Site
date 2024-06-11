@@ -1,9 +1,16 @@
 import Wrapper from "../../UI/Wrapper";
 import cartItems from "../../../data/dummyCartItems";
 import ProductCard from "../../ProductCard";
+import SectionHeader from "../../UI/SectionHeader";
+import SectionTitle from "../../UI/SectionTitle";
 const index = () => {
   return (
-    <div>
+    <div className="m-4 md:m-8 lg:m-12">
+      <div className="mb-3 md:mb-4 lg:mb-8">
+        <SectionHeader sectionHeader="Our Products" />
+      </div>
+
+      <SectionTitle text="Explore Our Products" />
       <Wrapper className="flex items-stretch flex-wrap gap-2 sm:gap-4 md:gap-5 my-8 md:my-10">
         {cartItems.map((item) => (
           <ProductCard
