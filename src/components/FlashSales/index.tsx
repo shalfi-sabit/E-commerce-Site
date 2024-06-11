@@ -33,7 +33,7 @@ const index = () => {
   };
 
   return (
-    <section className="m-8 sm:m-10 md:m-16 lg:m-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
+    <section className="m-8 sm:m-10 md:m-16 lg:m-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7 ">
       <SectionHeader sectionHeader="Today's" />
       <SectionTitle text="Flash Sales" timer={<Timer />}>
         <ArrowButtons
@@ -42,9 +42,9 @@ const index = () => {
         />
       </SectionTitle>
 
-      <Wrapper className="pb-5 sm:pb-7 md:pb-9 border-b">
+      <Wrapper className="pb-5 sm:pb-7 md:pb-9 border-b ">
         <div
-          className="flex gap-6 overflow-x-scroll horizontal-scrollbar-hide"
+          className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-scroll horizontal-scrollbar-hide py-3"
           ref={scrollContainerRef}
         >
           {cartItems.map((item) => (
