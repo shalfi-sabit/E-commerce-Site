@@ -1,10 +1,12 @@
 import FormInput from "../../UI/Input/FormInput";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { CheckoutFormData } from "./index";
+import SaveInfoIcon from "../../../assets/icons/SaveInfoIcon";
 
 interface CheckoutFormProps {
   register: UseFormRegister<CheckoutFormData>;
   errors: FieldErrors<CheckoutFormData>;
+  saveInformation: boolean;
   setSaveInformation: React.Dispatch<React.SetStateAction<boolean>>;
   className?: string;
 }
@@ -12,6 +14,7 @@ interface CheckoutFormProps {
 const CheckoutForm: React.FC<CheckoutFormProps> = ({
   register,
   errors,
+  saveInformation,
   setSaveInformation,
   className,
 }) => {
@@ -81,18 +84,21 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         errors={errors}
         defaultValue={savedData?.email || ""}
       />
-      <div className="flex">
-        <input
-          className="text-red-400 mr-3"
-          type="checkbox"
-          id="save-information-checkbox"
-          name="save-information-checkbox"
-          onClick={handleSaveInfoClick}
-        />
-        <label
-          className="text-[10px] md:text-[12px] lg:text-sm font-medium"
-          htmlFor="save-information-checkbox"
-        >
+      <div className="flex items-center">
+        {saveInformation && (
+          <div className="mr-1 md:mr-2 lg:mr-3" onClick={handleSaveInfoClick}>
+            <SaveInfoIcon />
+          </div>
+        )}
+
+        {!saveInformation && (
+          <div
+            className="border-2 rounded border-red-400 fill-none w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 mr-1 md:mr-2 lg:mr-3"
+            onClick={handleSaveInfoClick}
+          ></div>
+        )}
+
+        <label className="text-[10px] md:text-[12px] lg:text-sm font-medium">
           Save this information for faster check-out next time
         </label>
       </div>
