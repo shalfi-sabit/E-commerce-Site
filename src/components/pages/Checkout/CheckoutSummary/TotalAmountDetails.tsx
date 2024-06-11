@@ -18,7 +18,7 @@ const TotalAmountDetails: React.FC<totalAmountDetailsProps> = ({
       </div>
       <div className="flex justify-between font-medium text-[12px] sm:text-sm md:text-[16px] py-2 lg:py-4">
         <p>Total:</p>
-        <p>${subTotal + shippingCharge}</p>
+        <p>${(subTotal || 0) + (shippingCharge || 0)}</p>
       </div>
     </div>
   );

@@ -4,13 +4,17 @@ import TotalAmountDetails from "./TotalAmountDetails";
 import cartItems from "../../../../data/dummyCartItems";
 import ChoosePaymentMethod from "./ChoosePaymentMethod";
 import ApplyCouponCode from "../../../UI/ApplyCouponCode";
-import choosePaymentMethodProps from "../../../../models/choosePaymentMethodProps";
+import checkoutSummary from "../../../../models/checkoutSummary";
 
-const CheckoutSummary: React.FC<choosePaymentMethodProps> = ({
+const CheckoutSummary: React.FC<checkoutSummary> = ({
   isCashSelected,
   setIsCashSelected,
   subTotal,
   shippingCharge,
+  couponCode,
+  setCouponCode,
+  handleApplyCouponCode,
+  isCouponButtonDisabled,
 }) => {
   return (
     <div className="bg-white-900 flex flex-col gap-2 md:gap-4 lg:gap-6">
@@ -32,11 +36,15 @@ const CheckoutSummary: React.FC<choosePaymentMethodProps> = ({
       <ChoosePaymentMethod
         isCashSelected={isCashSelected}
         setIsCashSelected={setIsCashSelected}
-        subTotal={subTotal}
-        shippingCharge={shippingCharge}
       />
 
-      <ApplyCouponCode subTotal={subTotal} shippingCharge={shippingCharge} />
+      <ApplyCouponCode
+        subTotal={subTotal}
+        couponCode={couponCode}
+        setCouponCode={setCouponCode}
+        handleApplyCouponCode={handleApplyCouponCode}
+        isCouponButtonDisabled={isCouponButtonDisabled}
+      />
     </div>
   );
 };
