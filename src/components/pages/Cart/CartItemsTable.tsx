@@ -37,7 +37,7 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
                     <img
                       src={item.imageSource}
                       alt="pp"
-                      className="hidden md:block w-12 mr-4"
+                      className="hidden md:block w-12 mr-20 lg:mr-4"
                     />
                   </div>
                   <RemoveButtonContainer />
