@@ -101,7 +101,7 @@ const SignUp = () => {
           rounded-md hover:bg-gray-100 font-semibold text-[12px] sm:text-sm lg:text-[16px] 
           px-5 sm:px-6 lg:px-7 py-1 hover:shadow-md duration-200"
           >
-            <span className="text-[20px] sm:text-[20px] lg:text-[25px]">
+            <span className="text-[18px] sm:text-[20px] lg:text-[25px]">
               <FcGoogle />
             </span>
             Sign up with Google
