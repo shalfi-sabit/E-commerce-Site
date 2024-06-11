@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 
 type rightArrowIconProps = {
-  onClick: (event: MouseEvent<HTMLOrSVGElement>) => void;
+  onClick?: (event: MouseEvent<HTMLOrSVGElement>) => void;
 };
 
 const RightArrowIcon: React.FC<rightArrowIconProps> = ({ onClick }) => {

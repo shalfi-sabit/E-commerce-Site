@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import RightArrowIcon from "../../assets/icons/RightArrowIcon";
+import RightArrowIconOutlined from "../../assets/images/right-arrow-outlined.png";
 
 type carouselImageContainerProps = {
   productName: string;
@@ -19,7 +19,7 @@ const CarouselImageContainer: React.FC<carouselImageContainerProps> = ({
         <h3 className="text-[12px] sm:text-sm md:text-lg lg:text-2xl">
           {productName}
         </h3>
-        <h1 className="text-base sm:text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-semibold">
+        <h1 className="text-base sm:text-2xl md:text-4xl lg:text-5xl font-semibold">
           {title}
         </h1>
         <div className="flex items-center gap-1 md:gap-2 lg:gap-4">
@@ -29,7 +29,11 @@ const CarouselImageContainer: React.FC<carouselImageContainerProps> = ({
           >
             Shop Now
           </NavLink>
-          <RightArrowIcon />
+          <img
+            src={RightArrowIconOutlined}
+            alt="right-arrow"
+            className="w-4 h-4"
+          />
         </div>
       </div>
 
