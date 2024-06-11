@@ -39,7 +39,9 @@ const FormInput: React.FC<FormInputProps> = ({
         </label>
       )}
       <input
-        className={`bg-gray-100 rounded focus:outline-none placeholder-gray-800 focus:text-black-900 text-[10px] md:text-[12px] lg:text-sm p-2 md:p-3 `}
+        className={`bg-gray-100 rounded focus:outline-none placeholder-gray-800 focus:text-black-900 text-[10px] md:text-[12px] lg:text-sm p-2 md:p-3 ${
+          errors[name]?.message && "border border-red-900"
+        }`}
         placeholder={placeholder}
         type={type}
         {...register(name)}

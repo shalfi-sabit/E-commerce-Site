@@ -28,7 +28,7 @@ const index: React.FC<productCardProps> = ({
 
   return (
     <div
-      className="flex justify-center items-start flex-col rounded sm:gap-1 text-sm md:text-[16px] transition-all duration-1000"
+      className="flex justify-center items-start flex-col rounded sm:gap-1 text-[12px] sm:text-sm md:text-[16px] transition-all duration-1000"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >

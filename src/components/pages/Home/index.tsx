@@ -1,7 +1,11 @@
-import React from "react";
+import FlashSale from "../../FlashSales";
 
 const Home = () => {
-  return <div>I'm Home Page</div>;
+  return (
+    <main className="overflow-x-hidden">
+      <FlashSale />
+    </main>
+  );
 };
 
 export default Home;
