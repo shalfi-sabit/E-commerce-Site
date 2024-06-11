@@ -1,6 +1,6 @@
 import FormInput from "../../UI/Input/FormInput";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { CheckoutFormData } from "./index";
+import { CheckoutFormData } from "../../../models/checkoutFormData";
 import SaveInfoIcon from "../../../assets/icons/SaveInfoIcon";
 
 interface CheckoutFormProps {
