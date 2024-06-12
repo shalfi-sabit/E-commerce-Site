@@ -35,7 +35,10 @@ const EditProfileForm = () => {
         Edit Profile Form
       </h1>
 
-      <Form onSubmit={handleSubmit(submitHandler)}>
+      <Form
+        onSubmit={handleSubmit(submitHandler)}
+        className="flex flex-col gap-2 md:gap-4"
+      >
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
           <FormInput
             label="First Name"
@@ -86,7 +89,7 @@ const EditProfileForm = () => {
           />
         </div>
 
-        <div className="flex items-center flex-col">
+        <div className="flex items-center flex-col gap-2 md:gap-3">
           <FormInput
             label="Password Changes"
             placeholder="Current Password"

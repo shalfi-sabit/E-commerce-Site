@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import FillButton from "../../UI/Button/FillButton";
@@ -22,6 +23,7 @@ type loaderDataType = {
 const SignIn = () => {
   const location = useLocation();
   const submit = useSubmit();
+
   const {
     handleSubmit,
     register,
@@ -32,7 +34,7 @@ const SignIn = () => {
 
   const loaderData = (useLoaderData() as loaderDataType) || {};
 
-  const onSubmit = (data: { username: string; password: string }) => {
+  const onSubmit = async (data: { username: string; password: string }) => {
     const formData = new FormData();
     formData.append("username", data.username);
     formData.append("password", data.password);

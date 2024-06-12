@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import axios from "axios";
 import { redirect, ActionFunctionArgs } from "react-router-dom";
-
 export const loginAction: (
   args: ActionFunctionArgs
 ) => Promise<Response | null> = async ({ request }) => {
@@ -36,7 +34,7 @@ export const loginAction: (
     localStorage.setItem("user", JSON.stringify(curUserData));
 
     return redirect(redirectTo);
-  } catch (error) {
+  } catch (error: any) {
     return null;
   }
 };
