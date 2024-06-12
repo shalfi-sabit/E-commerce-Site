@@ -1,7 +1,6 @@
 const getUserFullName = () => {
-  const firstName = localStorage.getItem("firstName") || "";
-  const lastName = localStorage.getItem("lastName") || "";
-  return `${firstName} ${lastName}`.trim();
+  const user = localStorage.getItem("user") || "";
+  return `${JSON.parse(user).name.firstname} ${JSON.parse(user).name.lastname}`;
 };
 
 export default getUserFullName;

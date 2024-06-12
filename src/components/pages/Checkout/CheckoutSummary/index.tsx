@@ -42,6 +42,7 @@ const CheckoutSummary: React.FC<checkoutSummary> = ({
         setCouponCode={setCouponCode}
         handleApplyCouponCode={handleApplyCouponCode}
         isCouponButtonDisabled={isCouponButtonDisabled}
+        containerStyle="flex flex-col xs:flex-row"
       />
     </div>
   );

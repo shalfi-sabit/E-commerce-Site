@@ -2,7 +2,7 @@ import React from "react";
 import getUserFullName from "../../utils/getUserFullName";
 import Wrapper from "./Wrapper";
 
-const AlreadyLoggedInMessage = () => {
+const AlreadyLoggedInMessage: React.FC = () => {
   const userFullName = getUserFullName();
 
   return (
