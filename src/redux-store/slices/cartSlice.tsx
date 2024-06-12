@@ -14,12 +14,10 @@ const cartSlice = createSlice({
   initialState: initialState,
   reducers: {
     handleProductAdd: (state, action) => {
-      const productId = action.payload.id;
-      state.cartItems.push();
+      console.log(action.payload);
+      state.cartItems.push(action.payload);
     },
-    handleProductRemove: (state, action) => {
-      const productId = action.payload.id;
-    },
+    handleProductRemove: (state, action) => {},
   },
 });
 

@@ -9,6 +9,9 @@ import SeeDetailsIcon from "../../assets/icons/SeeDetailsIcon";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 import CartIconWhite from "../../assets/icons/CartIconWhite";
 import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../redux-store/slices/cartSlice";
+import { RootState } from "../../redux-store/redux-store";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -24,7 +27,26 @@ const index: React.FC<productCardProps> = ({
   showSeeDetailsIcon,
   discount,
 }) => {
+  const dispatch = useDispatch();
+  const products = useSelector((state: RootState) => state.products.products);
   const { isHovered, handleMouseOver, handleMouseOut } = useMouseOver();
+  const addToCartHandler = () => {
+    if (id > 0 && id <= products.length) {
+      const curProduct = {
+        id,
+        title: productName,
+        price,
+        description: products[id - 1].description,
+        category: products[id - 1].category,
+        image: imageSource,
+        rating: {
+          rate: rating,
+          count: count,
+        },
+      };
+      dispatch(cartActions.handleProductAdd(curProduct));
+    }
+  };
 
   return (
     <div
@@ -38,7 +60,10 @@ const index: React.FC<productCardProps> = ({
         </div>
 
         {isHovered && (
-          <div className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer">
+          <div
+            className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer"
+            onClick={addToCartHandler}
+          >
             <CartIconWhite />
             <p>Add To Cart</p>
           </div>
