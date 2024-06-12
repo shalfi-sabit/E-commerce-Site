@@ -17,7 +17,7 @@ const OutlinedButton: React.FC<Props> = ({
     <div>
       <button
         className={`border-solid border-[1px] rounded border-gray-400 text-black-900 
-        font-semibold hover:text-gray-300 text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 hover:shadow-md duration-200 ${className}`}
+        font-semibold hover:text-gray-300 text-nowrap text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 hover:shadow-md duration-200 ${className}`}
         onClick={onClick}
       >
         {text}
