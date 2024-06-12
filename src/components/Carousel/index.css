@@ -1,0 +1,35 @@
+.swiper-pagination-bullet {
+  background-color: white;
+  height: 8px;
+  width: 8px;
+}
+
+@media screen and (min-width: 448px) {
+  .swiper-pagination-bullet {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-pagination-bullet {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .swiper-pagination-bullet {
+    height: 14px;
+    width: 14px;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #db4444;
+  border: solid 2px white;
+}
+
+img {
+  width: 100%;
+}
