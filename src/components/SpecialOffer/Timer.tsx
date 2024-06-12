@@ -9,7 +9,7 @@ const Timer = () => {
   return (
     <>
       {timeLeft > 0 ? (
-        <div className="flex gap-1 sm:gap-2 md:gap-3 items-end self-center mb-[-4px] sm:mb-0">
+        <div className="flex gap-1 sm:gap-2 md:gap-3">
           <TimerItem title="Hours" time={hours} />
           <TimerItem title="Minutes" time={minutes} />
           <TimerItem title="Seconds" time={seconds} isLastItem={true} />
