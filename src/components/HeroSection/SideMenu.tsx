@@ -4,7 +4,7 @@ import NextIcon from "../../assets/images/next-icon.png";
 
 const SideMenu = () => {
   return (
-    <aside className="w-full md:w-[21%] pt-4 sm:pt-6 md:pt-8 lg:pt-10 text-[12px]">
+    <aside className="w-full md:w-[21%] pt-4 sm:pt-6 md:pt-8 lg:pt-10 text-[12px] md:border-r">
       <div className="xs:hidden flex justify-around">
         <ul className="h-full flex flex-col justify-between gap-1 ">
           <li>
@@ -104,7 +104,7 @@ const SideMenu = () => {
         </ul>
       </div>
 
-      <div className="h-full hidden md:flex flex-col text-[12px] lg:text-sm xl:text-base border-r">
+      <div className="h-full hidden md:flex flex-col text-[12px] lg:text-sm xl:text-base">
         <ul className="h-full flex flex-col justify-between gap-1">
           <li>
             <NavLink
