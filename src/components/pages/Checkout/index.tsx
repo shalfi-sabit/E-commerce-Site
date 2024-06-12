@@ -11,11 +11,9 @@ import CheckoutSummary from "./CheckoutSummary";
 import BreadCrumb from "../../shared/BreadCrumb";
 import cartItems from "../../../data/dummyCartItems";
 import { CheckoutFormData } from "../../../models/checkoutFormData";
-import applicableCouponCodes from "../../../data/applicableCouponCodes";
+import useCouponCode from "../../../hooks/useCouponCode";
 import { useDispatch } from "react-redux";
 import { snackbarActions } from "../../../redux-store/slices/snackbarSlice";
-
-type CouponCodes = "RATUL30" | "SAKIB20" | "SABIT15";
 
 const Checkout: React.FC = () => {
   const {
@@ -28,10 +26,6 @@ const Checkout: React.FC = () => {
   const dispatch = useDispatch();
   const [saveInformation, setSaveInformation] = useState<boolean>(false);
   const [isCashSelected, setIsCashSelected] = useState<boolean>(true);
-  const [couponCode, setCouponCode] = useState<string>("");
-  const [isCouponButtonDisabled, setIsCouponButtonDisabled] = useState(false);
-  const [isPlaceOrderButtonDisabled, setIsPlaceOrderButtonDisabled] =
-    useState(false);
 
   const initialSubtotal = cartItems.reduce((accumulator, cartItem) => {
     return parseFloat(
@@ -40,6 +34,14 @@ const Checkout: React.FC = () => {
   }, 0);
 
   const [subTotal, setSubTotal] = useState(initialSubtotal);
+  const {
+    couponCode,
+    isCouponButtonDisabled,
+    setCouponCode,
+    handleApplyCouponCode,
+    setIsPlaceOrderButtonDisabled,
+    isPlaceOrderButtonDisabled,
+  } = useCouponCode({ setSubTotal });
 
   const shippingCharge = 30;
 
@@ -70,32 +72,6 @@ const Checkout: React.FC = () => {
     );
   };
 
-  const handleApplyCouponCode = () => {
-    if (applicableCouponCodes[couponCode as CouponCodes]) {
-      setSubTotal(
-        (prevSubTotal) =>
-          prevSubTotal -
-          (prevSubTotal / 100) *
-            applicableCouponCodes[couponCode as CouponCodes]
-      );
-
-      setIsCouponButtonDisabled(true);
-      dispatch(
-        snackbarActions.handleSnackbarOpen({
-          severity: "success",
-          message: "Coupon code applied successfully",
-        })
-      );
-    } else {
-      dispatch(
-        snackbarActions.handleSnackbarOpen({
-          severity: "error",
-          message: "Invalid coupon code",
-        })
-      );
-    }
-  };
-
   return (
     <>
       <BreadCrumb />
@@ -103,6 +79,7 @@ const Checkout: React.FC = () => {
         <h1 className="mb-5 text-[20px] md:text-[25px] lg:text-3xl font-medium">
           Billing Details
         </h1>
+
         <Form
           onSubmit={handleSubmit(onSubmit)}
           className="flex justify-between flex-col sm:flex-row gap-10 sm:gap-0"

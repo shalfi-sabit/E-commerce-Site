@@ -39,8 +39,6 @@ const CheckoutSummary: React.FC<checkoutSummary> = ({
       />
 
       <ApplyCouponCode
-        subTotal={subTotal}
-        couponCode={couponCode}
         setCouponCode={setCouponCode}
         handleApplyCouponCode={handleApplyCouponCode}
         isCouponButtonDisabled={isCouponButtonDisabled}
