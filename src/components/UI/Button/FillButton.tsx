@@ -7,7 +7,7 @@ interface ButtonProps {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   isCouponButtonDisabled?: boolean;
   isPlaceOrderButtonDisabled?: boolean;
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
 }
 
 const FillButton: React.FC<ButtonProps> = ({

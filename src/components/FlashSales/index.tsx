@@ -7,14 +7,22 @@ import SectionHeader from "../UI/SectionHeader";
 import SectionTitle from "../UI/SectionTitle";
 import Timer from "./Timer";
 import ArrowButtons from "../UI/Button/ArrowButtons";
-import cartItems from "../../data/dummyCartItems";
 import ProductCard from "../ProductCard/index";
 import Wrapper from "../UI/Wrapper";
 import FillButton from "../UI/Button/FillButton";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux-store/redux-store";
+import product from "../../models/product";
+
+const CART_ITEMS_ID: number[] = [];
+for (let i = 1; i < 20; i += 2) {
+  CART_ITEMS_ID.push(i);
+}
 
 const index = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const products = useSelector((state: RootState) => state.products.products);
 
   const scroll = (scrollOffset: number) => {
     if (scrollContainerRef.current) {
@@ -50,21 +58,25 @@ const index = () => {
           className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-scroll horizontal-scrollbar-hide py-3"
           ref={scrollContainerRef}
         >
-          {cartItems.map((item) => (
-            <ProductCard
-              key={item.id}
-              id={item.id}
-              imageSource={item.imageSource}
-              productName={item.title}
-              price={item.price}
-              prevPrice={item.prevPrice}
-              rating={item.rating}
-              count={item.count}
-              discount={item.discount}
-              showAddToWishlistIcon
-              showSeeDetailsIcon
-            />
-          ))}
+          {CART_ITEMS_ID.map((curItemId) => {
+            const item: product = products[curItemId];
+
+            return (
+              <ProductCard
+                key={item.id}
+                id={item.id}
+                imageSource={item.image}
+                productName={item.title}
+                price={item.price}
+                prevPrice={300}
+                rating={item.rating.rate}
+                count={item.rating.count}
+                discount={50}
+                showAddToWishlistIcon
+                showSeeDetailsIcon
+              />
+            );
+          })}
         </div>
         <div className="flex justify-center items-center mt-6 sm:mt-7 md:mt-8">
           <FillButton
