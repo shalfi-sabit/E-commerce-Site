@@ -14,6 +14,12 @@ import ErrorBoundary from "../components/pages/Error";
 import Wishlist from "../components/pages/Wishlist";
 import Cart from "../components/pages/Cart";
 import Checkout from "../components/pages/Checkout";
+import EditProfileForm from "../components/pages/Account/MyProfile";
+import AddressBook from "../components/pages/Account/AddressBook";
+import MyPaymentOptions from "../components/pages/Account/MyPaymentOptions";
+import MyReturns from "../components/pages/Account/MyReturns";
+import MyCancellations from "../components/pages/Account/MyCancellations";
+import ProductDetails from "../components/pages/ProductDetails";
 import ExploreAllProducts from "../components/pages/ExploreAllProducts";
 
 export const routes = createBrowserRouter([
@@ -28,10 +34,22 @@ export const routes = createBrowserRouter([
       { path: "signup", element: <SignUp />, loader: authLoader },
       { path: "contact", element: <Contact /> },
       { path: "about", element: <About /> },
-      { path: "account", element: <Account />, loader: notLoggedInLoader },
+      {
+        path: "account",
+        element: <Account />,
+        loader: notLoggedInLoader,
+        children: [
+          { index: true, element: <EditProfileForm /> },
+          { path: "address-book", element: <AddressBook /> },
+          { path: "my-payment-options", element: <MyPaymentOptions /> },
+          { path: "my-returns", element: <MyReturns /> },
+          { path: "my-cancellations", element: <MyCancellations /> },
+        ],
+      },
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout />, loader: notLoggedInLoader },
+      { path: "product/:productId", element: <ProductDetails /> },
       { path: "products", element: <ExploreAllProducts /> },
     ],
   },

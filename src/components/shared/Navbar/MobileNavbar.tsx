@@ -11,6 +11,8 @@ type mobileNavbarProps = {
   isLoggedIn: boolean;
   isMobileNavbarOpen: boolean;
   setIsMobileNavbarOpen: (isOpen: boolean) => void;
+  handleBackdropClick: (event: MouseEvent<HTMLDivElement>) => void;
+  handleMobileNavbarClick: (event: MouseEvent<HTMLDivElement>) => void;
 };
 
 const MobileNavbar: React.FC<mobileNavbarProps> = ({
@@ -18,15 +20,9 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
   isLoggedIn,
   isMobileNavbarOpen,
   setIsMobileNavbarOpen,
+  handleBackdropClick,
+  handleMobileNavbarClick,
 }) => {
-  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
-    setIsMobileNavbarOpen(false);
-  };
-
-  const handleMobileNavbarClick = (event: MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
-
   return (
     <div
       className={`w-screen h-screen fixed bg-gray-200 right-0 z-50  xl:hidden flex justify-end  ${

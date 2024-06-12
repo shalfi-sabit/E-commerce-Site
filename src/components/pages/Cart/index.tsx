@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Wrapper from "../../UI/Wrapper";
 import cartItems from "../../../data/dummyCartItems";
-import OutlinedButton from "../../UI/Button/OutlinedButton";
 import BillingSummary from "./BillingSummary";
 import CartItemsTable from "./CartItemsTable";
 
