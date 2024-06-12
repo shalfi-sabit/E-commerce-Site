@@ -4,6 +4,7 @@ import BillingSummary from "./BillingSummary";
 import CartItemsTable from "./CartItemsTable";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux-store/redux-store";
+import EmptyCart from "./EmptyCart";
 
 export interface CartItem {
   title: string;
@@ -28,11 +29,16 @@ const Cart: React.FC = () => {
     setQuantities(newQuantities);
   };
 
+  if (cartItems.length === 0) {
+    return <EmptyCart />;
+  }
+
   return (
     <Wrapper>
       <CartItemsTable
         quantities={quantities}
         onHandleQuantityChange={handleQuantityChange}
+        cartItems={cartItems}
       />
       <BillingSummary />
     </Wrapper>

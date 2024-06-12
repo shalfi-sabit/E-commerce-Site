@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import cartItems from "../../../data/dummyCartItems";
 import truncateTitle from "../../../utils/truncateTitle";
 import RemoveButtonContainer from "../../UI/RemoveButtonContainer";
 import { CartItem } from "./index";
 import OutlinedButton from "../../UI/Button/OutlinedButton";
+import product from "../../../models/product";
 
 interface cartItemsTableProps {
   quantities: number[];
@@ -12,13 +12,16 @@ interface cartItemsTableProps {
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
+  cartItems: product[];
 }
 
 const CartItemsTable: React.FC<cartItemsTableProps> = ({
   quantities,
   onHandleQuantityChange,
+  cartItems,
 }) => {
   const navigate = useNavigate();
+
   return (
     <div className="flex flex-col w-full">
       <table className="table-fixed w-full text-xs sm:text-[14px] md:text-[16px] leading-1 border-separate border-spacing-y-10">
@@ -30,14 +33,15 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
             <th className="py-2 pr-5 text-right font-semibold">Subtotal</th>
           </tr>
         </thead>
+
         <tbody>
-          {cartItems.map((item: CartItem, index: number) => {
+          {cartItems.map((item: product, index: number) => {
             return (
               <tr key={index} className="shadow-md">
                 <td className="p-4 flex items-center cursor-pointer relative">
                   <div className="relative inline-block">
                     <img
-                      src={item.imageSource}
+                      src={item.image}
                       alt="pp"
                       className="hidden md:block w-12 mr-20 lg:mr-4"
                     />
@@ -63,11 +67,13 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
           })}
         </tbody>
       </table>
+
       <div className="flex justify-between">
         <OutlinedButton
           text="Return To Shop"
           onClick={() => navigate("/")}
         ></OutlinedButton>
+
         <OutlinedButton text="Update Cart"></OutlinedButton>
       </div>
     </div>
