@@ -63,14 +63,14 @@ const index = () => {
 
             return (
               <ProductCard
-                key={item.id}
-                id={item.id}
-                imageSource={item.image}
-                productName={item.title}
-                price={item.price}
+                key={item?.id}
+                id={item?.id}
+                imageSource={item?.image}
+                productName={item?.title}
+                price={item?.price}
                 prevPrice={300}
-                rating={item.rating.rate}
-                count={item.rating.count}
+                rating={item?.rating.rate}
+                count={item?.rating.count}
                 discount={50}
                 showAddToWishlistIcon
                 showSeeDetailsIcon
