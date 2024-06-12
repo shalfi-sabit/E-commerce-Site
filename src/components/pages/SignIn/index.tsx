@@ -7,14 +7,19 @@ import AuthImage from "../../../assets/images/sideImage.png";
 import Wrapper from "../../UI/Wrapper";
 import SignInProps from "../../../models/signinProps";
 import SignInSchema from "../../../form-schema/signin";
+import { backdropSpinnerActions } from "../../../redux-store/slices/backdropSpinnerSlice";
+
 import {
   Link,
   NavLink,
   useLoaderData,
   useLocation,
+  useNavigation,
   useSubmit,
 } from "react-router-dom";
 import AlreadyLoggedInMessage from "../../UI/AlreadyLoggedInMessage";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 type loaderDataType = {
   showAlreadyLoggedInMessage?: boolean;
@@ -23,6 +28,9 @@ type loaderDataType = {
 const SignIn = () => {
   const location = useLocation();
   const submit = useSubmit();
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const isSubmitting = navigation.state === "submitting";
 
   const {
     handleSubmit,
@@ -49,6 +57,12 @@ const SignIn = () => {
   if (loaderData.showAlreadyLoggedInMessage) {
     return <AlreadyLoggedInMessage />;
   }
+
+  useEffect(() => {
+    if (isSubmitting) {
+      dispatch(backdropSpinnerActions.handlebBackdropSpinnerOpen());
+    }
+  }, [isSubmitting, dispatch]);
 
   return (
     <Wrapper className=" flex justify-around w-3/4  my-10">
@@ -85,7 +99,11 @@ const SignIn = () => {
             errors={errors}
           />
           <div className="flex mt-6 flex-col sm:flex-row">
-            <FillButton text="Log in" className="w-full mb-2" />
+            <FillButton
+              text={isSubmitting ? "Loggin in..." : "Log in"}
+              className="w-full mb-2"
+              isSubmitting={isSubmitting}
+            />
             <Link
               to="/signin"
               className=" bg-white-900 ml-2 text-gray-300 mb-2 font-semibold text-[12px] 
