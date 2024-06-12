@@ -10,8 +10,8 @@ import { NavLink } from "react-router-dom";
 
 const NewArrivals = () => {
   return (
-    <div className="flex flex-col gap-14">
-      <div className="flex flex-col gap-5">
+    <div className=" flex flex-col ">
+      <div className="flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
         <SectionHeader sectionHeader="Featured" />
         <SectionTitle text="New Arrival" />
       </div>

@@ -12,7 +12,7 @@ import Wrapper from "../UI/Wrapper";
 const index = () => {
   const navigate = useNavigate();
   return (
-    <section className="mt-8 sm:mt-10 md:mt-16 lg:mt-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
+    <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
       <SectionHeader sectionHeader="This Month" />
       <SectionTitle text="Top Rated Products">
         <FillButton
@@ -23,7 +23,7 @@ const index = () => {
         />
       </SectionTitle>
 
-      <Wrapper className="pb-5 sm:pb-7 md:pb-9 flex items-stretch lg:justify-around flex-wrap gap-2 sm:gap-4 md:gap-5 my-8 md:my-10">
+      <Wrapper className="pb-5 sm:pb-7 md:pb-7 flex items-stretch lg:justify-around flex-wrap gap-2 sm:gap-4 md:gap-5 my-2 md:my-4">
         {TopRatedProducts.map((item) => (
           <ProductCard
             key={item.id}
