@@ -12,6 +12,8 @@ interface FormInputProps {
   register: any;
   errors?: any;
   defaultValue?: string | number;
+  labelIsblack?: boolean;
+  inputStyle?: string;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -24,15 +26,19 @@ const FormInput: React.FC<FormInputProps> = ({
   register,
   errors,
   defaultValue,
+  labelIsblack,
+  inputStyle,
 }) => {
   const { isFocused, handleFocus, handleBlur } = useOnFocus();
 
   return (
-    <div className={`flex flex-col gap-1 pb-3 md:pb-4 xl:pb-5 ${className}`}>
+    <div className={`flex flex-col gap-1 ${className}`}>
       {label && (
         <label
           className={`${
-            isFocused ? "text-black-900" : "text-gray-500"
+            isFocused
+              ? "text-black-900"
+              : `${labelIsblack ? "text-black-900" : "text-gray-500"}`
           } text-[10px] md:text-[12px] lg:text-sm font-medium`}
         >
           {label} {required ? <span className="text-red-900">*</span> : ""}
@@ -51,7 +57,9 @@ const FormInput: React.FC<FormInputProps> = ({
       />
       {errors[name]?.message ? (
         <p
-          className={`text-red-900 tracking-tighter text-[10px] md:text-[12px] lg:text-sm mt-1 flex items-center gap-1 `}
+          className={`text-red-900 tracking-tighter text-[10px] md:text-[12px] lg:text-sm mt-1 flex items-center gap-1 ${
+            errors[name]?.message ? "mb-3 md:mb-5" : ""
+          }`}
         >
           <MdErrorOutline /> {errors[name]?.message}
         </p>

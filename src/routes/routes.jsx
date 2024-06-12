@@ -15,6 +15,11 @@ import Checkout from "../components/pages/Checkout";
 import ExploreAllProducts from "../components/pages/ExploreAllProducts";
 import { loginAction } from "../components/pages/SignIn/action";
 import RequireAuth from "../components/RequireAuth";
+import EditProfileForm from "../components/pages/Account/MyProfile";
+import AddressBook from "../components/pages/Account/AddressBook";
+import MyPaymentOptions from "../components/pages/Account/MyPaymentOptions";
+import MyReturns from "../components/pages/Account/MyReturns";
+import MyCancellations from "../components/pages/Account/MyCancellations";
 
 export const routes = createBrowserRouter([
   {
@@ -39,6 +44,13 @@ export const routes = createBrowserRouter([
             <Account />
           </RequireAuth>
         ),
+        children: [
+          { index: true, element: <EditProfileForm /> },
+          { path: "address-book", element: <AddressBook /> },
+          { path: "my-payment-options", element: <MyPaymentOptions /> },
+          { path: "my-returns", element: <MyReturns /> },
+          { path: "my-cancellations", element: <MyCancellations /> },
+        ],
       },
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },

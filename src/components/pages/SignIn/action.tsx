@@ -30,6 +30,7 @@ export const loginAction: (
       userName: foundUser.username,
       address: foundUser.address,
       name: foundUser.name,
+      email: foundUser.email,
     };
 
     localStorage.setItem("user", JSON.stringify(curUserData));
