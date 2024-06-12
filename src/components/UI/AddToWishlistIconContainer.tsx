@@ -11,7 +11,7 @@ const AddToWishlistIconContainer: React.FC = () => {
   };
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} title="Add to wishlist">
       <AddToWishlistIcon />
     </div>
   );

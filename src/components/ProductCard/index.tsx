@@ -81,9 +81,17 @@ const index: React.FC<productCardProps> = ({
       )}
 
       <div className="absolute flex flex-col gap-1 md:gap-2 top-2 right-2 md:top-3 md:right-3 ">
-        {showDeleteIcon && <DeleteIcon />}
+        {showDeleteIcon && (
+          <span title="Delete">
+            <DeleteIcon />
+          </span>
+        )}
         {showAddToWishlistIcon && <AddToWishlistIconContainer />}
-        {showSeeDetailsIcon && <SeeDetailsIcon />}
+        {showSeeDetailsIcon && (
+          <span title="See details">
+            <SeeDetailsIcon />
+          </span>
+        )}
       </div>
     </div>
   );
