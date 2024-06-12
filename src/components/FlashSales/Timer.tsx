@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from "react";
-import getFormattedTime from "../../utils/getFormattedTime";
 import TimerItem from "./TimerItem";
+import useTimer from "../../hooks/useTimer";
 
 const Timer = () => {
-  const currentTime = new Date().getTime();
-  const deadlineTime = currentTime + 7 * 24 * 60 * 60 * 1000;
-
-  const [timeLeft, setTimeLeft] = useState(deadlineTime - currentTime);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeLeft((prevTimeLeft) => prevTimeLeft - 1000);
-
-      if (timeLeft <= 0) {
-        clearInterval(intervalId);
-      }
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeLeft]);
-
-  const { days, hours, minutes, seconds } = getFormattedTime(timeLeft);
+  const { timeLeft, days, hours, minutes, seconds } = useTimer({
+    timerDays: 7,
+  });
 
   return (
     <>
