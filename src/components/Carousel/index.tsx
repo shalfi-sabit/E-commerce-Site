@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import "swiper/css/autoplay"; // Import autoplay CSS
+import { Pagination, Autoplay } from "swiper/modules"; // Import Autoplay module
 import sliderImageOne from "../../assets/images/slider/phone.png";
 import sliderImageTwo from "../../assets/images/slider/monitor.png";
 import sliderImageThree from "../../assets/images/slider/ring.png";
@@ -16,7 +17,11 @@ const Carousel: React.FC = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
+        autoplay={{
+          delay: 3000, // Set your desired interval in milliseconds
+          disableOnInteraction: false, // Continue autoplay after user interactions
+        }}
+        modules={[Pagination, Autoplay]} // Add Autoplay module
         slidesPerView={1}
         className=""
       >

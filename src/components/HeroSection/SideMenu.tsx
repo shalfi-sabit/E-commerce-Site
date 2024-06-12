@@ -104,7 +104,7 @@ const SideMenu = () => {
         </ul>
       </div>
 
-      <div className="h-full hidden md:flex flex-col text-[12px] lg:text-sm border-r">
+      <div className="h-full hidden md:flex flex-col text-[12px] lg:text-sm xl:text-base border-r">
         <ul className="h-full flex flex-col justify-between gap-1">
           <li>
             <NavLink
