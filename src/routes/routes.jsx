@@ -18,6 +18,7 @@ import AddressBook from "../components/pages/Account/AddressBook";
 import MyPaymentOptions from "../components/pages/Account/MyPaymentOptions";
 import MyReturns from "../components/pages/Account/MyReturns";
 import MyCancellations from "../components/pages/Account/MyCancellations";
+import ProductDetails from "../components/pages/ProductDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ export const routes = createBrowserRouter([
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout />, loader: notLoggedInLoader },
+      { path: "product/:productId", element: <ProductDetails /> },
     ],
   },
 ]);
