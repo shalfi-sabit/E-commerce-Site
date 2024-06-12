@@ -29,7 +29,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   }
 
   return (
-    <div className={`w-full flex flex-col gap-0 ${className}`}>
+    <div
+      className={`w-full flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-7 ${className}`}
+    >
       <FormInput
         label="First Name"
         required

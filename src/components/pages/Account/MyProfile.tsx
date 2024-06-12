@@ -8,6 +8,15 @@ import FormInput from "../../UI/Input/FormInput";
 import FillButton from "../../UI/Button/FillButton";
 
 const EditProfileForm = () => {
+  let userJson = localStorage.getItem("user") || "";
+  let userObject = JSON.parse(userJson);
+  console.log(userObject.address);
+  const firstName = userObject.name.firstname;
+  const lastName = userObject.name.lastname;
+  const email = userObject.email;
+  console.log(userObject);
+  const address = userObject.address.city + " " + userObject.address.street;
+
   const {
     handleSubmit,
     register,
@@ -26,7 +35,10 @@ const EditProfileForm = () => {
         Edit Profile Form
       </h1>
 
-      <Form onSubmit={handleSubmit(submitHandler)}>
+      <Form
+        onSubmit={handleSubmit(submitHandler)}
+        className="flex flex-col gap-2 md:gap-4"
+      >
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
           <FormInput
             label="First Name"
@@ -37,6 +49,7 @@ const EditProfileForm = () => {
             className="w-full"
             labelIsblack={true}
             inputStyle="mb-2 sm:mb-4"
+            defaultValue={firstName}
           />
           <FormInput
             label="Last Name"
@@ -47,6 +60,7 @@ const EditProfileForm = () => {
             className="w-full"
             labelIsblack={true}
             inputStyle="mb-2 sm:mb-4"
+            defaultValue={lastName}
           />
         </div>
 
@@ -60,6 +74,7 @@ const EditProfileForm = () => {
             className="w-full"
             labelIsblack={true}
             inputStyle="mb-2 sm:mb-4"
+            defaultValue={email}
           />
           <FormInput
             label="Address"
@@ -70,10 +85,11 @@ const EditProfileForm = () => {
             className="w-full"
             labelIsblack={true}
             inputStyle="mb-2 sm:mb-4"
+            defaultValue={address}
           />
         </div>
 
-        <div className="flex items-center flex-col">
+        <div className="flex items-center flex-col gap-2 md:gap-3">
           <FormInput
             label="Password Changes"
             placeholder="Current Password"
