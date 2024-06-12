@@ -5,10 +5,10 @@ import { useMouseOver } from "../../hooks/useMouseOver";
 import productCardProps from "../../models/productCardProps";
 
 import { Rating } from "@mui/material";
-import AddToWishlistIcon from "../../assets/icons/AddToWishlistIcon";
 import SeeDetailsIcon from "../../assets/icons/SeeDetailsIcon";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 import CartIconWhite from "../../assets/icons/CartIconWhite";
+import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -82,7 +82,7 @@ const index: React.FC<productCardProps> = ({
 
       <div className="absolute flex flex-col gap-1 md:gap-2 top-2 right-2 md:top-3 md:right-3 ">
         {showDeleteIcon && <DeleteIcon />}
-        {showAddToWishlistIcon && <AddToWishlistIcon />}
+        {showAddToWishlistIcon && <AddToWishlistIconContainer />}
         {showSeeDetailsIcon && <SeeDetailsIcon />}
       </div>
     </div>
