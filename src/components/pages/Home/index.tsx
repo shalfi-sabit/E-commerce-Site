@@ -1,4 +1,5 @@
 import FlashSale from "../../FlashSales";
+import NewArrivals from "../../NewArrivals";
 import TopRatedProducts from "../../TopRatedProducts";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <main className="overflow-x-hidden">
       <FlashSale />
       <TopRatedProducts />
+      <NewArrivals />
     </main>
   );
 };
