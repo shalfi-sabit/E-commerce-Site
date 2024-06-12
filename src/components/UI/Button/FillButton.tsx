@@ -1,23 +1,55 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 
 interface ButtonProps {
   text: string;
-  type?: "submit";
+  type?: "submit" | "button";
   className?: string;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  isCouponButtonDisabled?: boolean;
+  isPlaceOrderButtonDisabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, type, className }) => {
+const FillButton: React.FC<ButtonProps> = ({
+  text,
+  type,
+  className,
+  onClick,
+  isCouponButtonDisabled,
+  isPlaceOrderButtonDisabled,
+}) => {
   return (
-    <div>
-      <button
-        type={type}
-        className={`bg-red-900 hover:bg-red-400 rounded text-white-900 
-    font-medium text-[10px] sm:text-[12px] md:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-[8px] sm:py-[10px] lg:py-3 hover:shadow-md duration-200 ${className}`}
-      >
-        {text}
-      </button>
-    </div>
+    <>
+      {onClick && (
+        <button
+          type={type}
+          className={`  rounded text-white-900 
+    font-medium text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 duration-200 text-nowrap ${className} ${
+            isCouponButtonDisabled || isPlaceOrderButtonDisabled
+              ? "bg-red-200"
+              : "bg-red-900 hover:bg-red-400 hover:shadow-md"
+          }`}
+          onClick={onClick}
+          disabled={isCouponButtonDisabled || isPlaceOrderButtonDisabled}
+        >
+          {text}
+        </button>
+      )}
+      {!onClick && (
+        <button
+          type={type}
+          className={` hover:bg-red-400 rounded text-white-900 
+    font-medium text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 duration-200 text-nowrap ${className} ${
+            isCouponButtonDisabled || isPlaceOrderButtonDisabled
+              ? "bg-red-200"
+              : "bg-red-900 hover:bg-red-400 hover:shadow-md"
+          }`}
+          disabled={isCouponButtonDisabled || isPlaceOrderButtonDisabled}
+        >
+          {text}
+        </button>
+      )}
+    </>
   );
 };
 
-export default Button;
+export default FillButton;

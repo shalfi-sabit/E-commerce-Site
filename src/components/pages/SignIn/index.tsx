@@ -66,12 +66,12 @@ const SignIn = () => {
             register={register}
             errors={errors}
           />
-          <div className="flex mt-6">
+          <div className="flex mt-6 flex-col sm:flex-row">
             <FillButton text="Log in" className="w-full mb-2" />
             <Link
               to="/signin"
-              className=" bg-white-900 ml-2 text-red-900 mb-2 font-semibold text-[12px] 
-            sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2"
+              className=" bg-white-900 ml-2 text-gray-300 mb-2 font-semibold text-[12px] 
+            sm:text-sm lg:text-[16px] sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 text-nowrap "
             >
               Forgot Password?
             </Link>

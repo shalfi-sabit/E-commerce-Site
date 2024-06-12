@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import RootLayout from "../components/pages/RootLayout";
 import Home from "../components/pages/Home";
+import homeLoader from "../components/pages/Home/loader";
 import SignIn from "../components/pages/SignIn";
 import SignUp from "../components/pages/SignUp";
 import authLoader from "../components/pages/SignUp/loader";
@@ -19,6 +20,7 @@ import MyPaymentOptions from "../components/pages/Account/MyPaymentOptions";
 import MyReturns from "../components/pages/Account/MyReturns";
 import MyCancellations from "../components/pages/Account/MyCancellations";
 import ProductDetails from "../components/pages/ProductDetails";
+import ExploreAllProducts from "../components/pages/ExploreAllProducts";
 
 export const routes = createBrowserRouter([
   {
@@ -26,7 +28,7 @@ export const routes = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorBoundary />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Home />, loader: homeLoader },
       { path: "signin", element: <SignIn />, loader: authLoader },
       { path: "signup", element: <SignUp />, loader: authLoader },
       { path: "contact", element: <Contact /> },
@@ -47,6 +49,7 @@ export const routes = createBrowserRouter([
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout />, loader: notLoggedInLoader },
       { path: "product/:productId", element: <ProductDetails /> },
+      { path: "products", element: <ExploreAllProducts /> },
     ],
   },
 ]);
