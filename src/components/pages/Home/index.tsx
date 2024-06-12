@@ -3,6 +3,7 @@ import NewArrivals from "../../NewArrivals";
 import HeroSection from "../../HeroSection";
 import TopRatedProducts from "../../TopRatedProducts";
 import CustomerBenefits from "../../shared/CustomerBenefits";
+import SpecialOffer from "../../SpecialOffer";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <HeroSection />
       <FlashSale />
       <TopRatedProducts />
+      <SpecialOffer />
       <NewArrivals />
       <CustomerBenefits />
     </main>
