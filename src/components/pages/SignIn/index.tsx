@@ -6,7 +6,13 @@ import AuthImage from "../../../assets/images/sideImage.png";
 import Wrapper from "../../UI/Wrapper";
 import SignInProps from "../../../models/signinProps";
 import SignInSchema from "../../../form-schema/signin";
-import { Link, NavLink, useLoaderData } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  useLoaderData,
+  useLocation,
+  useSubmit,
+} from "react-router-dom";
 import AlreadyLoggedInMessage from "../../UI/AlreadyLoggedInMessage";
 
 type loaderDataType = {
@@ -14,6 +20,8 @@ type loaderDataType = {
 };
 
 const SignIn = () => {
+  const location = useLocation();
+  const submit = useSubmit();
   const {
     handleSubmit,
     register,
@@ -24,8 +32,16 @@ const SignIn = () => {
 
   const loaderData = (useLoaderData() as loaderDataType) || {};
 
-  const onSubmit = (data: {}) => {
-    console.log(data);
+  const onSubmit = (data: { username: string; password: string }) => {
+    const formData = new FormData();
+    formData.append("username", data.username);
+    formData.append("password", data.password);
+
+    const redirectTo = location.state?.from?.pathname || "/";
+    submit(formData, {
+      method: "post",
+      action: `/signin?redirectTo=${encodeURIComponent(redirectTo)}`,
+    });
   };
 
   if (loaderData.showAlreadyLoggedInMessage) {

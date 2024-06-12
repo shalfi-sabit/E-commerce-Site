@@ -8,12 +8,13 @@ import authLoader from "../components/pages/SignUp/loader";
 import About from "../components/pages/About";
 import Contact from "../components/pages/Contact";
 import Account from "../components/pages/Account";
-import notLoggedInLoader from "../components/pages/Account/loader";
 import ErrorBoundary from "../components/pages/Error";
 import Wishlist from "../components/pages/Wishlist";
 import Cart from "../components/pages/Cart";
 import Checkout from "../components/pages/Checkout";
 import ExploreAllProducts from "../components/pages/ExploreAllProducts";
+import { loginAction } from "../components/pages/SignIn/action";
+import RequireAuth from "../components/RequireAuth";
 
 export const routes = createBrowserRouter([
   {
@@ -22,14 +23,33 @@ export const routes = createBrowserRouter([
     errorElement: <ErrorBoundary />,
     children: [
       { index: true, element: <Home /> },
-      { path: "signin", element: <SignIn />, loader: authLoader },
+      {
+        path: "signin",
+        element: <SignIn />,
+        loader: authLoader,
+        action: loginAction,
+      },
       { path: "signup", element: <SignUp />, loader: authLoader },
       { path: "contact", element: <Contact /> },
       { path: "about", element: <About /> },
-      { path: "account", element: <Account />, loader: notLoggedInLoader },
+      {
+        path: "account",
+        element: (
+          <RequireAuth>
+            <Account />
+          </RequireAuth>
+        ),
+      },
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
-      { path: "checkout", element: <Checkout />, loader: notLoggedInLoader },
+      {
+        path: "checkout",
+        element: (
+          <RequireAuth>
+            <Checkout />
+          </RequireAuth>
+        ),
+      },
       { path: "products", element: <ExploreAllProducts /> },
     ],
   },
