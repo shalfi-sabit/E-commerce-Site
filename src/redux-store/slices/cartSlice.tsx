@@ -28,7 +28,6 @@ const cartSlice = createSlice({
       }
     },
     handleProductRemove: (state, action) => {
-      console.log("removed!!");
       state.cartItems = state.cartItems.filter(
         (cartItem) => cartItem.id !== action.payload.id
       );

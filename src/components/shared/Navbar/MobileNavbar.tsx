@@ -31,6 +31,10 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
     0
   );
 
+  const wishlistItems = useSelector(
+    (state: RootState) => state.wishlist.wishlistItems
+  );
+
   return (
     <div
       className={`w-screen h-screen fixed bg-gray-200 right-0 z-50  xl:hidden flex justify-end  ${
@@ -95,7 +99,7 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
         <div className="flex items-center gap-3">
           {!isOnAuthPages && (
             <>
-              <WishlistIconContainer count={2} />
+              <WishlistIconContainer count={wishlistItems.length} />
               <CartIconContainer count={totalCartItems} />
             </>
           )}

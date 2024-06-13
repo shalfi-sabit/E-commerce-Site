@@ -6,6 +6,7 @@ import cartReducer from "./slices/cartSlice";
 import backdropSpinner from "./slices/backdropSpinnerSlice";
 import loginSliceReducer from "./slices/loginSlice";
 import searchResultReducer from "./slices/searchResult";
+import wishlistReducer from "./slices/wishlistSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     backdropSpinner: backdropSpinner,
     login: loginSliceReducer,
     search: searchResultReducer,
+    wishlist: wishlistReducer,
   },
 });
 

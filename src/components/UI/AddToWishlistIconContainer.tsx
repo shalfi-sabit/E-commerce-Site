@@ -1,18 +1,20 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import AddToWishlistIcon from "../../assets/icons/AddToWishlistIcon";
-import { RootState } from "../../redux-store/redux-store";
-import { useSelector } from "react-redux";
 
-const AddToWishlistIconContainer: React.FC = () => {
-  const products = useSelector((state: RootState) => state.products.products);
+type addToWishlistIconContainerProps = {
+  onClick: (event: MouseEvent<HTMLDivElement>) => void;
+  isRedStroke?: boolean;
+  isRedFill?: boolean;
+};
 
-  const handleClick = () => {
-    console.log("pp");
-  };
-
+const AddToWishlistIconContainer: React.FC<addToWishlistIconContainerProps> = ({
+  onClick,
+  isRedStroke,
+  isRedFill,
+}) => {
   return (
-    <div onClick={handleClick} title="Add to wishlist">
-      <AddToWishlistIcon />
+    <div onClick={onClick} title="Add to wishlist">
+      <AddToWishlistIcon isRedStroke={isRedStroke} isRedFill={isRedFill} />
     </div>
   );
 };
