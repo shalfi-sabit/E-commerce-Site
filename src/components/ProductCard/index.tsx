@@ -12,6 +12,7 @@ import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../redux-store/slices/cartSlice";
 import { RootState } from "../../redux-store/redux-store";
+import { snackbarActions } from "../../redux-store/slices/snackbarSlice";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -30,7 +31,8 @@ const index: React.FC<productCardProps> = ({
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products);
   const { isHovered, handleMouseOver, handleMouseOut } = useMouseOver();
-  const addToCartHandler = () => {
+
+  const addItemHandler = () => {
     if (id > 0 && id <= products.length) {
       const curProduct = {
         id,
@@ -45,6 +47,12 @@ const index: React.FC<productCardProps> = ({
         },
       };
       dispatch(cartActions.handleProductAdd(curProduct));
+      dispatch(
+        snackbarActions.handleSnackbarOpen({
+          severity: "success",
+          message: "Product added to cart",
+        })
+      );
     }
   };
 
@@ -62,7 +70,7 @@ const index: React.FC<productCardProps> = ({
         {isHovered && (
           <div
             className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer"
-            onClick={addToCartHandler}
+            onClick={addItemHandler}
           >
             <CartIconWhite />
             <p>Add To Cart</p>

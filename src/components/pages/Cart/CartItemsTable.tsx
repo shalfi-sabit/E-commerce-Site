@@ -2,25 +2,50 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import truncateTitle from "../../../utils/truncateTitle";
 import RemoveButtonContainer from "../../UI/RemoveButtonContainer";
-import { CartItem } from "./index";
 import OutlinedButton from "../../UI/Button/OutlinedButton";
-import product from "../../../models/product";
+import CartProduct from "../../../models/cartProduct";
+import cartItemsTableProps from "../../../models/cartItemTableProps";
+import { useDispatch } from "react-redux";
+import { snackbarActions } from "../../../redux-store/slices/snackbarSlice";
+import { cartActions } from "../../../redux-store/slices/cartSlice";
 
-interface cartItemsTableProps {
-  quantities: number[];
-  onHandleQuantityChange: (
-    index: number,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
-  cartItems: product[];
-}
+import UpArrowIcon from "../../../assets/images/up-arrow.png";
+import DownArrowIcon from "../../../assets/images/down-arrow.png";
 
 const CartItemsTable: React.FC<cartItemsTableProps> = ({
-  quantities,
   onHandleQuantityChange,
   cartItems,
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const removeItemHandler = (id: number) => {
+    dispatch(cartActions.handleProductRemove({ id }));
+    dispatch(
+      snackbarActions.handleSnackbarOpen({
+        severity: "success",
+        message: "Product removed from cart",
+      })
+    );
+  };
+
+  const handleIncrement = (index: number) => {
+    dispatch(cartActions.handleProductAdd({ id: cartItems[index].id }));
+  };
+
+  const handleDecrement = (index: number) => {
+    if (cartItems[index].quantity === 1) {
+      dispatch(cartActions.handleProductDecrease({ id: cartItems[index].id }));
+      dispatch(
+        snackbarActions.handleSnackbarOpen({
+          severity: "success",
+          message: "Product removed from cart",
+        })
+      );
+    } else {
+      dispatch(cartActions.handleProductDecrease({ id: cartItems[index].id }));
+    }
+  };
 
   return (
     <div className="flex flex-col w-full">
@@ -35,32 +60,56 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
         </thead>
 
         <tbody>
-          {cartItems.map((item: product, index: number) => {
+          {cartItems.map((item: CartProduct, index: number) => {
             return (
               <tr key={index} className="shadow-md">
                 <td className="p-4 flex items-center cursor-pointer relative">
                   <div className="relative inline-block">
                     <img
                       src={item.image}
-                      alt="pp"
+                      alt="product"
                       className="hidden md:block w-12 mr-20 lg:mr-4"
                     />
                   </div>
-                  <RemoveButtonContainer />
+                  <RemoveButtonContainer
+                    onClick={() => removeItemHandler(item.id)}
+                  />
                   {truncateTitle(item.title, 20)}
                 </td>
                 <td className="p-4 text-center">{item.price}</td>
                 <td className="p-4 text-center py-2 px-4">
-                  <input
-                    type="number"
-                    value={quantities[index] === 0 ? "" : quantities[index]}
-                    onChange={(event) => onHandleQuantityChange(index, event)}
-                    min={0}
-                    className="border-2 py-1 rounded-md text-center w-10 sm:w-12 md:w-14 lg:w-16"
-                  />
+                  <div className="flex items-center justify-center">
+                    <div className="border-2 w-fit flex pl-1 lg:pr-1 rounded-md">
+                      <input
+                        type="number"
+                        value={
+                          item.quantity < 10
+                            ? "0" + item.quantity
+                            : item.quantity
+                        }
+                        min={0}
+                        className="cart-input py-1 text-center w-4 xs:w-6 sm:w-6 md:w-8 lg:w-10 focus:outline-none"
+                      />
+
+                      <div className="h-full flex flex-col gap-0 lg:gap-1 py-1 pr-1">
+                        <img
+                          src={UpArrowIcon}
+                          alt="up-arrow"
+                          className="w-4 xs:w-4 sm:w-3 cursor-pointer"
+                          onClick={() => handleIncrement(index)}
+                        />
+                        <img
+                          src={DownArrowIcon}
+                          alt="down-arrow"
+                          className="w-4 xs:w-4 sm:w-3 cursor-pointer"
+                          onClick={() => handleDecrement(index)}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </td>
                 <td className="py-4 pr-8 text-right">
-                  {(quantities[index] * item.price).toFixed(2)}
+                  {(item.quantity * item.price).toFixed(2)}
                 </td>
               </tr>
             );

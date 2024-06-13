@@ -16,7 +16,7 @@ export interface CartItem {
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const [quantities, setQuantities] = useState<number[]>(
-    cartItems.map((item) => item.rating.count)
+    cartItems.map((item) => item.quantity)
   );
 
   const handleQuantityChange = (
@@ -36,7 +36,6 @@ const Cart: React.FC = () => {
   return (
     <Wrapper>
       <CartItemsTable
-        quantities={quantities}
         onHandleQuantityChange={handleQuantityChange}
         cartItems={cartItems}
       />

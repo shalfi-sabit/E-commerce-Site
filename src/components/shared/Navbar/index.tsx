@@ -13,6 +13,8 @@ import CloseWindowIcon from "../../../assets/icons/close-window.png";
 
 import MobileNavbar from "./MobileNavbar.tsx";
 import useMobileSidebar from "../../../hooks/useMobileSidebar.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux-store/redux-store.tsx";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -26,6 +28,12 @@ const Navbar: React.FC = () => {
   const isLoggedIn = getLoginStatus();
   const isOnAuthPages =
     location.pathname === "/signup" || location.pathname === "/signin";
+
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const totalCartItems = cartItems.reduce(
+    (prevCount, item) => prevCount + item.quantity,
+    0
+  );
 
   return (
     <header className="top-0 left-0 w-full z-10">
@@ -89,7 +97,7 @@ const Navbar: React.FC = () => {
               {!isOnAuthPages && (
                 <>
                   <WishlistIconContainer count={2} />
-                  <CartIconContainer count={4} />
+                  <CartIconContainer count={totalCartItems} />
                 </>
               )}
 
