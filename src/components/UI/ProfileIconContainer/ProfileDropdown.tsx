@@ -1,4 +1,4 @@
-import DropdownRow from "./DropdownRow";
+import DropdownRow from "../DropdownRow";
 
 import ProfileIconOutlinedWhite from "../../../assets/icons/ProfileIconOutlinedWhite";
 import MallbagIcon from "../../../assets/icons/MallbagIcon";
