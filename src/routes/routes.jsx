@@ -21,6 +21,7 @@ import AddressBook from "../components/pages/Account/AddressBook";
 import MyPaymentOptions from "../components/pages/Account/MyPaymentOptions";
 import MyReturns from "../components/pages/Account/MyReturns";
 import MyCancellations from "../components/pages/Account/MyCancellations";
+import ProductDetails from "../components/pages/ProductDetails/";
 
 export const routes = createBrowserRouter([
   {
@@ -65,6 +66,7 @@ export const routes = createBrowserRouter([
         ),
       },
       { path: "products", element: <ExploreAllProducts /> },
+      { path: "product/:id", element: <ProductDetails /> },
     ],
   },
 ]);

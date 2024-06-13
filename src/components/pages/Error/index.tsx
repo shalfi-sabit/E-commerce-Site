@@ -14,23 +14,23 @@ const ErrorBoundary: React.FC = () => {
   const navigate = useNavigate();
 
   let title = "An Error Occurred!";
-  let message = "Something Went Wrong";
+  let message = "The requested resource could not be found on this server.";
+  let status = "404";
 
-  console.log(error.status);
-  if (error.status === 400) {
+  if (error?.status === 400) {
     title = "Bad Request";
     message =
       "The server could not understand the request due to invalid syntax.";
-  } else if (error.status === 401) {
+  } else if (error?.status === 401) {
     title = "Unauthorized";
     message = "You are not authorized to view this resource. Please log in.";
-  } else if (error.status === 403) {
+  } else if (error?.status === 403) {
     title = "Forbidden";
     message = "You do not have permission to access this resource.";
-  } else if (error.status === 404) {
+  } else if (error?.status === 404) {
     title = "Not Found";
     message = "The requested resource could not be found on this server.";
-  } else if (error.status === 500) {
+  } else if (error?.status === 500) {
     title = "Internal Server Error";
     message =
       "The server encountered an internal error and was unable to complete your request.";
@@ -41,7 +41,7 @@ const ErrorBoundary: React.FC = () => {
       <Wrapper>
         <div className="flex flex-col items-center gap-3 xs:gap-4 md:gap-5 lg:gap-6 px-6 py-10 xs:p-12 sm:p-14 md:p-16 lg:p-20">
           <p className="text-nowrap text-[40px] xs:text-[50px] sm:text-[60px] md:text-[80px] lg:text-[100px] font-medium">
-            <span>{error.status} </span>
+            <span>{status} </span>
             {title}
           </p>
           <p className="text-center text-[10px] xs:text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] tracking-tighter font-medium">
