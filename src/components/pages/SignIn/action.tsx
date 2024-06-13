@@ -18,6 +18,7 @@ export const loginAction: (
 
     const token = getToken.data.token;
     localStorage.setItem("token", token);
+    console.log(token);
 
     const allUsers = (await axios.get("https://fakestoreapi.com/users")).data;
 
@@ -34,8 +35,9 @@ export const loginAction: (
 
     localStorage.setItem("user", JSON.stringify(curUserData));
 
-    return redirect(redirectTo);
+    return redirect(`${redirectTo}?loginSuccess=true`);
   } catch (error: any) {
-    return null;
+    const errorRedirectTo = `/signin?error=true`;
+    return redirect(errorRedirectTo);
   }
 };
