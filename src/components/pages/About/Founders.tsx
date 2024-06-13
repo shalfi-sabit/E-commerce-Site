@@ -7,8 +7,8 @@ import Wrapper from "../../UI/Wrapper";
 const Founders = () => {
   return (
     <div
-      className="flex flex-row flex-wrap gap-10 justify-center lg:justify-between items-start w-full my-16
-    md:my-20 lg:my-32"
+      className="flex flex-row flex-wrap gap-10 justify-center lg:justify-between items-start w-full mt-16
+    md:mt-20 lg:mt-32"
     >
       <div>
         <img src={comTruise} />
