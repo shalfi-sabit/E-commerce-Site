@@ -4,7 +4,7 @@ import FlashSale from "../../FlashSales";
 import HeroSection from "../../HeroSection";
 import TopRatedProducts from "../../TopRatedProducts";
 import OurProducts from "../../OurProducts";
-import BrowseByCategory from "../../BrowseByCategory/index.tsx";
+import BrowseByCategory from "../../BrowseCategory/index.tsx";
 import { useDispatch } from "react-redux";
 import { handleProductAdd } from "../../../redux-store/slices/productsSlice";
 import { homeLoaderData } from "../../../models/homeLoaderData";
