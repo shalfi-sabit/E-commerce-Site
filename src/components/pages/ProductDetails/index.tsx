@@ -13,7 +13,7 @@ const index = () => {
   return (
     <>
       <BreadCrumb />
-      <Wrapper className="flex justify-between flex-col lg:flex-row">
+      <Wrapper className="flex justify-between items-center flex-col lg:flex-row gap-8 my-[5%]">
         <ProductImageCard id={productId} />
         <ProductDetails id={productId} />
       </Wrapper>

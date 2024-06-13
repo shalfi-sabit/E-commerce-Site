@@ -8,7 +8,7 @@ const smallProductImage: React.FC<smallProductImageProps> = ({
   imageSource,
 }) => {
   return (
-    <div className="w-[40%] md:w-[85%] lg:w-[80%] shadow-md p-4 sm:p-6 flex justify-center items-center">
+    <div className="w-[40%] md:w-[85%] lg:w-[100%] xl:w-[85%] shadow-md p-4 sm:p-6 flex justify-center items-center">
       <img
         src={imageSource}
         alt="product"

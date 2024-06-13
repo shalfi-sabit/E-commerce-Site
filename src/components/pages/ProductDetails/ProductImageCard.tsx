@@ -11,8 +11,8 @@ const ProductImageCard: React.FC<{ id: number }> = ({ id }) => {
     <>
       {curProduct ? (
         <>
-          <div className="flex flex-col-reverse md:flex-row gap-2 xs:gap-3 md:gap-0 w-[100%] md:w-[60%] lg:w-[60%] h-[50%]">
-            <div className="w-[100%] md:w-[25%] lg:w-[20%] flex md:flex-col justify-between gap-3">
+          <div className="flex flex-col-reverse md:flex-row gap-2 xs:gap-3 md:gap-4 w-[100%] md:w-[100%] lg:w-[60%] h-[50%]">
+            <div className="w-[100%] md:w-[20%] lg:w-[20%] flex md:flex-col justify-between gap-3">
               <SmallProductImage imageSource={curProduct.image} />
               <SmallProductImage imageSource={curProduct.image} />
               <SmallProductImage imageSource={curProduct.image} />
