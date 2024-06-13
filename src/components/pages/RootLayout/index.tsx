@@ -8,6 +8,7 @@ import { homeLoaderData } from "../../../models/homeLoaderData";
 import { RootState } from "../../../redux-store/redux-store";
 import { handleProductAdd } from "../../../redux-store/slices/productsSlice";
 import { useEffect } from "react";
+
 const RootLayout = () => {
   const dispatch = useDispatch();
   const loaderData = useLoaderData() as homeLoaderData;

@@ -8,7 +8,9 @@ const loader = async (): Promise<homeLoaderData> => {
     const response = await axios.get("https://fakestoreapi.com/products");
     return { data: response.data };
   } catch (error: any) {
-    return { error: error.message };
+    throw new Response(JSON.stringify({ message: "anything" }), {
+      status: 500,
+    });
   }
 };
 

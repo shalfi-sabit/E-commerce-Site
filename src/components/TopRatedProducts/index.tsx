@@ -14,7 +14,7 @@ const index = () => {
   const navigate = useNavigate();
   const products = useSelector((state: RootState) => state.products.products);
   return (
-    <section className="mt-8 sm:mt-10 md:mt-16 lg:mt-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
+    <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
       <SectionHeader sectionHeader="This Month" />
       <SectionTitle text="Top Rated Products">
         <FillButton
