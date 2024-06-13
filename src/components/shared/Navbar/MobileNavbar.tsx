@@ -5,6 +5,8 @@ import SearchBox from "./SearchBox";
 import ProfileIconContainer from "../../UI/ProfileIconContainer";
 import WishlistIconContainer from "../../UI/WishlistIconContainer";
 import CartIconContainer from "../../UI/CartIconContainer";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux-store/redux-store";
 
 type mobileNavbarProps = {
   isOnAuthPages: boolean;
@@ -23,6 +25,12 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
   handleBackdropClick,
   handleMobileNavbarClick,
 }) => {
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const totalCartItems = cartItems.reduce(
+    (prevCount, item) => prevCount + item.quantity,
+    0
+  );
+
   return (
     <div
       className={`w-screen h-screen fixed bg-gray-200 right-0 z-50  xl:hidden flex justify-end  ${
@@ -88,7 +96,7 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({
           {!isOnAuthPages && (
             <>
               <WishlistIconContainer count={2} />
-              <CartIconContainer count={4} />
+              <CartIconContainer count={totalCartItems} />
             </>
           )}
 

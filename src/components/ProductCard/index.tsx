@@ -5,10 +5,14 @@ import { useMouseOver } from "../../hooks/useMouseOver";
 import productCardProps from "../../models/productCardProps";
 
 import { Rating } from "@mui/material";
-import AddToWishlistIcon from "../../assets/icons/AddToWishlistIcon";
 import SeeDetailsIcon from "../../assets/icons/SeeDetailsIcon";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 import CartIconWhite from "../../assets/icons/CartIconWhite";
+import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../redux-store/slices/cartSlice";
+import { RootState } from "../../redux-store/redux-store";
+import { snackbarActions } from "../../redux-store/slices/snackbarSlice";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -24,7 +28,33 @@ const index: React.FC<productCardProps> = ({
   showSeeDetailsIcon,
   discount,
 }) => {
+  const dispatch = useDispatch();
+  const products = useSelector((state: RootState) => state.products.products);
   const { isHovered, handleMouseOver, handleMouseOut } = useMouseOver();
+
+  const addItemHandler = () => {
+    if (id > 0 && id <= products.length) {
+      const curProduct = {
+        id,
+        title: productName,
+        price,
+        description: products[id - 1].description,
+        category: products[id - 1].category,
+        image: imageSource,
+        rating: {
+          rate: rating,
+          count: count,
+        },
+      };
+      dispatch(cartActions.handleProductAdd(curProduct));
+      dispatch(
+        snackbarActions.handleSnackbarOpen({
+          severity: "success",
+          message: "Product added to cart",
+        })
+      );
+    }
+  };
 
   return (
     <div
@@ -38,7 +68,10 @@ const index: React.FC<productCardProps> = ({
         </div>
 
         {isHovered && (
-          <div className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer">
+          <div
+            className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer"
+            onClick={addItemHandler}
+          >
             <CartIconWhite />
             <p>Add To Cart</p>
           </div>
@@ -81,9 +114,17 @@ const index: React.FC<productCardProps> = ({
       )}
 
       <div className="absolute flex flex-col gap-1 md:gap-2 top-2 right-2 md:top-3 md:right-3 ">
-        {showDeleteIcon && <DeleteIcon />}
-        {showAddToWishlistIcon && <AddToWishlistIcon />}
-        {showSeeDetailsIcon && <SeeDetailsIcon />}
+        {showDeleteIcon && (
+          <span title="Delete">
+            <DeleteIcon />
+          </span>
+        )}
+        {showAddToWishlistIcon && <AddToWishlistIconContainer />}
+        {showSeeDetailsIcon && (
+          <span title="See details">
+            <SeeDetailsIcon />
+          </span>
+        )}
       </div>
     </div>
   );

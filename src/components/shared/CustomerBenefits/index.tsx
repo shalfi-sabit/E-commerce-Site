@@ -11,9 +11,9 @@ interface CustomerBenefitsProps {
 
 const CustomerBenefits: React.FC<CustomerBenefitsProps> = ({ className }) => {
   return (
-    <Wrapper className="m-auto py-10">
+    <Wrapper className="m-auto py-20 sm:py-24 md:py-28 lg:py-32">
       <div
-        className={`flex flex-wrap justify-evenly items-center text-xs md:text-sm gap-6 ${className}`}
+        className={`flex flex-wrap justify-evenly items-center text-xs md:text-sm gap-4 ${className}`}
       >
         <FeaturesWrapper
           icon={<DeliveryIcon />}

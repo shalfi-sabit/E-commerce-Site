@@ -10,7 +10,7 @@ const TotalAmountDetails: React.FC<totalAmountDetailsProps> = ({
     <div className="flex flex-col w-[88%]">
       <div className="flex justify-between font-medium text-[12px] sm:text-sm md:text-[16px] py-2 lg:py-4">
         <p>Subtotal:</p>
-        <p>${subTotal}</p>
+        <p>${subTotal?.toFixed(2)}</p>
       </div>
       <div className="flex justify-between border-t border-b border-gray-200 font-medium text-[12px] sm:text-sm md:text-[16px] py-2 lg:py-4">
         <p>Shipping:</p>
@@ -18,7 +18,7 @@ const TotalAmountDetails: React.FC<totalAmountDetailsProps> = ({
       </div>
       <div className="flex justify-between font-medium text-[12px] sm:text-sm md:text-[16px] py-2 lg:py-4">
         <p>Total:</p>
-        <p>${(subTotal || 0) + (shippingCharge || 0)}</p>
+        <p>${((subTotal || 0) + (shippingCharge || 0)).toFixed(2)}</p>
       </div>
     </div>
   );

@@ -1,22 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApplyCouponCode from "../../UI/ApplyCouponCode";
 import useCouponCode from "../../../hooks/useCouponCode";
 import TotalAmountDetails from "../Checkout/CheckoutSummary/TotalAmountDetails";
 import FillButton from "../../UI/Button/FillButton";
-import cartItems from "../../../data/dummyCartItems";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux-store/redux-store";
 
 const BillingSummary = () => {
   const navigate = useNavigate();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const initialSubtotal = cartItems.reduce((accumulator, cartItem) => {
     return parseFloat(
-      (accumulator + cartItem.price * cartItem.count).toFixed(2)
+      (accumulator + cartItem.price * cartItem.quantity).toFixed(2)
     );
   }, 0);
 
   const [subTotal, setSubTotal] = useState(initialSubtotal);
   const { isCouponButtonDisabled, setCouponCode, handleApplyCouponCode } =
-    useCouponCode({ setSubTotal });
+    useCouponCode({ setSubTotal, subTotal });
+
+  useEffect(() => {
+    const newSubTotal = cartItems.reduce((accumulator, cartItem) => {
+      return parseFloat(
+        (accumulator + cartItem.price * cartItem.quantity).toFixed(2)
+      );
+    }, 0);
+
+    setSubTotal(newSubTotal);
+  }, [cartItems]);
+
   return (
     <div className="flex flex-col gap-6 md:flex-row md:justify-between py-10 md:py-20 md:items-start">
       <ApplyCouponCode

@@ -5,6 +5,7 @@ import productsReducer from "./slices/productsSlice";
 import cartReducer from "./slices/cartSlice";
 import backdropSpinner from "./slices/backdropSpinnerSlice";
 import loginSliceReducer from "./slices/loginSlice";
+import searchResultReducer from "./slices/searchResult";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     cart: cartReducer,
     backdropSpinner: backdropSpinner,
     login: loginSliceReducer,
+    search: searchResultReducer,
   },
 });
 
