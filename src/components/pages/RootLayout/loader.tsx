@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { homeLoaderData } from "../../../models/homeLoaderData";
 
 const loader = async (): Promise<homeLoaderData> => {
