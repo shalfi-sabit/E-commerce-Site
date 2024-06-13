@@ -70,7 +70,7 @@ const index = () => {
                 prevPrice={300}
                 rating={item?.rating.rate}
                 count={item?.rating.count}
-                discount={50}
+                discount={Math.floor(Math.random() * (60 - 40 + 1)) + 40}
                 showAddToWishlistIcon
                 showSeeDetailsIcon
               />
