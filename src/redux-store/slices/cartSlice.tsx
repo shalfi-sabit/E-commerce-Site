@@ -18,13 +18,17 @@ const cartSlice = createSlice({
     },
     handleProductAdd: (state, action) => {
       const existingProductIndex = state.cartItems.findIndex(
-        (cartItem) => cartItem.id === action.payload.id
+        (cartItem) => cartItem.id === action.payload.product.id
       );
 
       if (existingProductIndex !== -1) {
-        state.cartItems[existingProductIndex].quantity += 1;
+        state.cartItems[existingProductIndex].quantity +=
+          action.payload.quantity;
       } else {
-        state.cartItems.push({ ...action.payload, quantity: 1 });
+        state.cartItems.push({
+          ...action.payload.product,
+          quantity: action.payload.quantity,
+        });
       }
     },
     handleProductRemove: (state, action) => {

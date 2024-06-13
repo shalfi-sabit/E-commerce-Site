@@ -6,12 +6,14 @@ type carouselImageContainerProps = {
   productName: string;
   title: string;
   imageSource: string;
+  to: string;
 };
 
 const CarouselImageContainer: React.FC<carouselImageContainerProps> = ({
   productName,
   title,
   imageSource,
+  to,
 }) => {
   return (
     <div className="relative">
@@ -24,7 +26,7 @@ const CarouselImageContainer: React.FC<carouselImageContainerProps> = ({
         </h1>
         <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
           <NavLink
-            to="/"
+            to={to}
             className="underline underline-offset-4 md:underline-offset-8 text-[10px] xs:text-[12px] sm:text-sm lg:text-base"
           >
             Shop Now

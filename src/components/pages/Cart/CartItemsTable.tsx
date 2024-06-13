@@ -5,13 +5,14 @@ import RemoveButtonContainer from "../../UI/RemoveButtonContainer";
 import OutlinedButton from "../../UI/Button/OutlinedButton";
 import CartProduct from "../../../models/cartProduct";
 import cartItemsTableProps from "../../../models/cartItemTableProps";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { snackbarActions } from "../../../redux-store/slices/snackbarSlice";
 import { cartActions } from "../../../redux-store/slices/cartSlice";
 
 import UpArrowIcon from "../../../assets/images/up-arrow.png";
 import DownArrowIcon from "../../../assets/images/down-arrow.png";
 import "./index.css";
+import { RootState } from "../../../redux-store/redux-store";
 
 const CartItemsTable: React.FC<cartItemsTableProps> = ({
   onHandleQuantityChange,
@@ -20,6 +21,7 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [removing, setRemoving] = useState<number | null>(null);
+  const products = useSelector((state: RootState) => state.products.products);
 
   const handleQuantityOnChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -27,7 +29,6 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
   ) => {
     let quantity = parseInt(event.target.value, 10) || 0;
 
-    // Handle the case when the input is cleared (empty string)
     if (isNaN(quantity)) {
       quantity = 0;
     }
@@ -55,7 +56,13 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
   };
 
   const handleIncrement = (index: number) => {
-    dispatch(cartActions.handleProductAdd({ id: cartItems[index].id }));
+    const curProduct = products.find(
+      (product) => product.id === cartItems[index].id
+    );
+
+    dispatch(
+      cartActions.handleProductAdd({ product: curProduct, quantity: 1 })
+    );
   };
 
   const handleDecrement = (index: number) => {
@@ -93,24 +100,35 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
         <tbody>
           {cartItems.map((item: CartProduct, index: number) => (
             <tr
-              key={index}
+              key={item.id}
               className={`table-row ${
                 removing === index ? "removing" : ""
               } shadow-md hover:bg-slate-100`}
             >
-              <td className="p-4 flex items-center cursor-pointer relative">
-                <div className="relative inline-block">
+              <td className="p-4 flex items-center relative">
+                <div
+                  className="relative inline-block"
+                  onClick={() => navigate(`/product/${item.id}`)}
+                >
                   <img
                     src={item.image}
                     alt="product"
-                    className="hidden md:block w-12 mr-20 lg:mr-4"
+                    className="hidden md:block w-12 mr-20 lg:mr-4 cursor-pointer"
+                    title="See details"
                   />
                 </div>
                 <RemoveButtonContainer
                   onClick={() => removeItemHandler(item.id, index)}
                 />
-                {truncateTitle(item.title, 20)}
+                <p
+                  className="cursor-pointer "
+                  onClick={() => navigate(`/product/${item.id}`)}
+                  title="See details"
+                >
+                  {truncateTitle(item.title, 20)}
+                </p>
               </td>
+
               <td className="p-4 text-center">${item.price}</td>
               <td className="p-4 text-center py-2 px-4">
                 <div className="flex items-center justify-center">

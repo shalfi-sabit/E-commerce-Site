@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import React, { useState } from "react";
+import React from "react";
 
 import { useMouseOver } from "../../hooks/useMouseOver";
 import productCardProps from "../../models/productCardProps";
@@ -15,6 +15,7 @@ import { RootState } from "../../redux-store/redux-store";
 import { snackbarActions } from "../../redux-store/slices/snackbarSlice";
 import { wishlistActions } from "../../redux-store/slices/wishlistSlice";
 import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
+import { useNavigate } from "react-router-dom";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -31,11 +32,9 @@ const index: React.FC<productCardProps> = ({
   discount,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector((state: RootState) => state.products.products);
   const { isHovered, handleMouseOver, handleMouseOut } = useMouseOver();
-  const [isAddedToWishList, setIsAddedToWishList] = useState<boolean>(false);
-
-  console.log(isAddedToWishList, id);
 
   const addItemHandler = () => {
     const curProduct = {
@@ -51,7 +50,9 @@ const index: React.FC<productCardProps> = ({
       },
     };
     if (id > 0 && id <= products.length) {
-      dispatch(cartActions.handleProductAdd(curProduct));
+      dispatch(
+        cartActions.handleProductAdd({ product: curProduct, quantity: 1 })
+      );
       dispatch(
         snackbarActions.handleSnackbarOpen({
           severity: "success",
@@ -82,7 +83,6 @@ const index: React.FC<productCardProps> = ({
           message: "Product added to wishlist",
         })
       );
-      setIsAddedToWishList((prevState: boolean) => !prevState);
     }
   };
 
@@ -96,7 +96,6 @@ const index: React.FC<productCardProps> = ({
         })
       );
     }
-    setIsAddedToWishList((prevState: boolean) => !prevState);
   };
 
   return (
@@ -170,7 +169,7 @@ const index: React.FC<productCardProps> = ({
         )}
 
         {showSeeDetailsIcon && (
-          <span title="See details">
+          <span title="See details" onClick={() => navigate(`/product/${id}`)}>
             <SeeDetailsIcon />
           </span>
         )}

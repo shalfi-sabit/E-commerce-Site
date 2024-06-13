@@ -1,20 +1,39 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent } from "react";
 import FillButton from "../../UI/Button/FillButton";
 import AddToWishlistIconContainer from "../../UI/AddToWishlistIconContainer";
 
 const BuyNowCTA: React.FC<{
   quantity: number;
+  buyNowQuantity: number;
   addToWishlistOnClick: (event: MouseEvent<HTMLDivElement>) => void;
   addToCartOnClick: (event: MouseEvent<HTMLButtonElement>) => void;
-}> = ({ quantity, addToWishlistOnClick, addToCartOnClick }) => {
-  const [buyNowQuantity, setBuyNowQuantity] = useState(1);
+  setBuyNowQuantity: React.Dispatch<React.SetStateAction<number>>;
+}> = ({
+  quantity,
+  buyNowQuantity,
+  addToWishlistOnClick,
+  addToCartOnClick,
+  setBuyNowQuantity,
+}) => {
+  const handleQuantityIncrement = () => {
+    setBuyNowQuantity((prevState) => prevState + 1);
+  };
+
+  const handleQuantityDecrement = () => {
+    setBuyNowQuantity((prevState) => (prevState === 0 ? 0 : prevState - 1));
+  };
 
   return (
     <div className="flex gap-3">
-      <div className="flex items-center justify-between w-[40%] border rounded">
+      <div className="flex items-center justify-between w-[40%] border rounded overflow-hidden">
         <button
-          className="w-[30%] flex justify-center items-center hover:bg-red-900 hover:border-none hover:text-white-900 duration-300 cursor-pointer h-full "
-          onClick={() => setBuyNowQuantity((prevState) => prevState - 1)}
+          className={`w-[30%] flex justify-center items-center ${
+            buyNowQuantity === 0
+              ? "bg-red-400 text-gray-300"
+              : "hover:bg-red-900 hover:border-none hover:text-white-900"
+          } duration-300 cursor-pointer h-full`}
+          onClick={handleQuantityDecrement}
+          disabled={buyNowQuantity === 0}
         >
           -
         </button>
@@ -23,7 +42,7 @@ const BuyNowCTA: React.FC<{
         </p>
         <button
           className="w-[30%] flex justify-center items-center hover:bg-red-900 hover:border-none hover:text-white-900 duration-300 cursor-pointer h-full "
-          onClick={() => setBuyNowQuantity((prevState) => prevState + 1)}
+          onClick={handleQuantityIncrement}
         >
           +
         </button>

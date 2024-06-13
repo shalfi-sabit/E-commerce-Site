@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux-store/redux-store";
 import ProductDescription from "./ProductDescription";
@@ -16,6 +16,7 @@ const ProductDetails: React.FC<{ id: number }> = ({ id }) => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const curProduct = products.filter((product) => product.id === id)[0];
   const currentCartProduct = cartItems.filter((item) => item.id === id)[0];
+  const [buyNowQuantity, setBuyNowQuantity] = useState(1);
   const quantity = currentCartProduct?.quantity;
 
   const addToWishlistHandler = (id: number) => {
@@ -32,7 +33,12 @@ const ProductDetails: React.FC<{ id: number }> = ({ id }) => {
 
   const addItemHandler = () => {
     if (id > 0 && id <= products.length) {
-      dispatch(cartActions.handleProductAdd({ curProduct, quantity }));
+      dispatch(
+        cartActions.handleProductAdd({
+          product: curProduct,
+          quantity: buyNowQuantity,
+        })
+      );
       dispatch(
         snackbarActions.handleSnackbarOpen({
           severity: "success",
@@ -55,6 +61,8 @@ const ProductDetails: React.FC<{ id: number }> = ({ id }) => {
               quantity={quantity}
               addToWishlistOnClick={() => addToWishlistHandler(id)}
               addToCartOnClick={addItemHandler}
+              buyNowQuantity={buyNowQuantity}
+              setBuyNowQuantity={setBuyNowQuantity}
             />
             <DeliveryCard />
           </div>

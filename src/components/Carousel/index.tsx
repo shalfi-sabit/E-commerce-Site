@@ -30,6 +30,7 @@ const Carousel: React.FC = () => {
             productName="iPhone 14 Series"
             title="Up to 10% off Voucher"
             imageSource={sliderImageOne}
+            to="#"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -37,6 +38,7 @@ const Carousel: React.FC = () => {
             productName="Samsung Super Ultrawide Screen QLED"
             title="Up to 10% off Voucher"
             imageSource={sliderImageTwo}
+            to="/product/14"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -44,6 +46,7 @@ const Carousel: React.FC = () => {
             productName="Solid Gold Petite Micropave"
             title="Up to 10% off Voucher"
             imageSource={sliderImageThree}
+            to="/product/6"
           />
         </SwiperSlide>
       </Swiper>
