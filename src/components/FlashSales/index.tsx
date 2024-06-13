@@ -35,12 +35,10 @@ const index = () => {
 
   const handleLeftArrowClciked = () => {
     scroll(-200);
-    console.log("Left Arrow Clicked");
   };
 
   const handleRightArrowClciked = () => {
     scroll(200);
-    console.log("Right Arrow Clicked");
   };
 
   return (
