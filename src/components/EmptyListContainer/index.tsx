@@ -1,11 +1,21 @@
 import React from "react";
 
-import EmptyCartImage from "../../../assets/images/empty-cart.jpg";
-import Wrapper from "../../UI/Wrapper";
-import FillButton from "../../UI/Button/FillButton";
+import EmptyCartImage from "../../assets/images/empty-cart.jpg";
+import Wrapper from "../UI/Wrapper";
+import FillButton from "../UI/Button/FillButton";
 import { useNavigate } from "react-router-dom";
 
-const EmptyCart = () => {
+type emptyListContainerProps = {
+  title: string;
+  subTitle: string;
+  secondarySubTitle: string;
+};
+
+const EmptyCart: React.FC<emptyListContainerProps> = ({
+  title,
+  subTitle,
+  secondarySubTitle,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -16,14 +26,14 @@ const EmptyCart = () => {
 
       <div className="flex flex-col gap-2 sm:gap-3 text-center">
         <h1 className="font-medium text-2xl md:text-3xl lg:text-5xl text-gray-900">
-          Your cart is empty!
+          {title}
         </h1>
         <div className="flex flex-col">
           <p className="text-gray-900 text-sm md:text-base lg:text-xl">
-            You've no items in your shopping cart.
+            {subTitle}
           </p>
           <p className="text-gray-900 text-sm lg:text-xl">
-            Let's go buy something
+            {secondarySubTitle}
           </p>
         </div>
       </div>

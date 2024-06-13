@@ -1,6 +1,12 @@
-import React from "react";
+type addToWishlistIconProps = {
+  isRedFill?: boolean;
+  isRedStroke?: boolean;
+};
 
-const AddToWishlist = () => {
+const AddToWishlist: React.FC<addToWishlistIconProps> = (
+  isRedFill,
+  isRedStroke
+) => {
   return (
     <svg
       viewBox="0 0 34 34"
@@ -21,3 +27,5 @@ const AddToWishlist = () => {
 };
 
 export default AddToWishlist;
+
+// #DB4444

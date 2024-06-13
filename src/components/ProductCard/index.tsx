@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+
+import React, { useState } from "react";
 
 import { useMouseOver } from "../../hooks/useMouseOver";
 import productCardProps from "../../models/productCardProps";
@@ -8,11 +9,12 @@ import { Rating } from "@mui/material";
 import SeeDetailsIcon from "../../assets/icons/SeeDetailsIcon";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 import CartIconWhite from "../../assets/icons/CartIconWhite";
-import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../redux-store/slices/cartSlice";
 import { RootState } from "../../redux-store/redux-store";
 import { snackbarActions } from "../../redux-store/slices/snackbarSlice";
+import { wishlistActions } from "../../redux-store/slices/wishlistSlice";
+import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -31,21 +33,24 @@ const index: React.FC<productCardProps> = ({
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products);
   const { isHovered, handleMouseOver, handleMouseOut } = useMouseOver();
+  const [isAddedToWishList, setIsAddedToWishList] = useState<boolean>(false);
+
+  console.log(isAddedToWishList, id);
 
   const addItemHandler = () => {
+    const curProduct = {
+      id,
+      title: productName,
+      price,
+      description: products[id - 1].description,
+      category: products[id - 1].category,
+      image: imageSource,
+      rating: {
+        rate: rating,
+        count: count,
+      },
+    };
     if (id > 0 && id <= products.length) {
-      const curProduct = {
-        id,
-        title: productName,
-        price,
-        description: products[id - 1].description,
-        category: products[id - 1].category,
-        image: imageSource,
-        rating: {
-          rate: rating,
-          count: count,
-        },
-      };
       dispatch(cartActions.handleProductAdd(curProduct));
       dispatch(
         snackbarActions.handleSnackbarOpen({
@@ -54,6 +59,44 @@ const index: React.FC<productCardProps> = ({
         })
       );
     }
+  };
+
+  const addToWishlistHandler = (id: number) => {
+    const curProduct = {
+      id,
+      title: productName,
+      price,
+      description: products[id - 1].description,
+      category: products[id - 1].category,
+      image: imageSource,
+      rating: {
+        rate: rating,
+        count: count,
+      },
+    };
+    if (id > 0 && id <= products.length) {
+      dispatch(wishlistActions.handleProductAdd(curProduct));
+      dispatch(
+        snackbarActions.handleSnackbarOpen({
+          severity: "success",
+          message: "Product added to wishlist",
+        })
+      );
+      setIsAddedToWishList((prevState: boolean) => !prevState);
+    }
+  };
+
+  const removeFromWishlistHandler = (id: number) => {
+    if (id > 0 && id <= products.length) {
+      dispatch(wishlistActions.handleProductRemove({ id: id }));
+      dispatch(
+        snackbarActions.handleSnackbarOpen({
+          severity: "success",
+          message: "Product remove from wishlist",
+        })
+      );
+    }
+    setIsAddedToWishList((prevState: boolean) => !prevState);
   };
 
   return (
@@ -115,11 +158,17 @@ const index: React.FC<productCardProps> = ({
 
       <div className="absolute flex flex-col gap-1 md:gap-2 top-2 right-2 md:top-3 md:right-3 ">
         {showDeleteIcon && (
-          <span title="Delete">
+          <span title="Delete" onClick={() => removeFromWishlistHandler(id)}>
             <DeleteIcon />
           </span>
         )}
-        {showAddToWishlistIcon && <AddToWishlistIconContainer />}
+
+        {showAddToWishlistIcon && (
+          <AddToWishlistIconContainer
+            onClick={() => addToWishlistHandler(id)}
+          />
+        )}
+
         {showSeeDetailsIcon && (
           <span title="See details">
             <SeeDetailsIcon />

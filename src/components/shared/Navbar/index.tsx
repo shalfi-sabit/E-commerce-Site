@@ -35,6 +35,10 @@ const Navbar: React.FC = () => {
     0
   );
 
+  const wishlistItems = useSelector(
+    (state: RootState) => state.wishlist.wishlistItems
+  );
+
   return (
     <header className="top-0 left-0 w-full z-10">
       <div className="relative">
@@ -96,7 +100,7 @@ const Navbar: React.FC = () => {
               <SearchBox />
               {!isOnAuthPages && (
                 <>
-                  <WishlistIconContainer count={2} />
+                  <WishlistIconContainer count={wishlistItems.length} />
                   <CartIconContainer count={totalCartItems} />
                 </>
               )}

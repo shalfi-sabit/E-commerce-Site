@@ -16,9 +16,13 @@ export default function SearchBar() {
     setSearchText(event.target.value);
 
     const matchedItems = products.filter((item) => {
-      const isTitleMatched = item.title.startsWith(event.target.value);
-      const isCategoryMatched = item.category.startsWith(event.target.value);
-      return isTitleMatched || isCategoryMatched;
+      let enteredValue = event.target.value;
+      enteredValue = enteredValue.toLowerCase();
+      const isTitleMatched = item.title.toLowerCase().includes(enteredValue);
+      const isCategoryMatched = item.category
+        .toLowerCase()
+        .includes(enteredValue);
+      return isCategoryMatched || isTitleMatched;
     });
 
     dispatch(searchResultActions.handleProductAdd(matchedItems));

@@ -4,8 +4,7 @@ import BillingSummary from "./BillingSummary";
 import CartItemsTable from "./CartItemsTable";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux-store/redux-store";
-import EmptyCart from "./EmptyCart";
-import "./index.css";
+import EmptyCart from "../../EmptyListContainer";
 
 export interface CartItem {
   title: string;
@@ -31,7 +30,13 @@ const Cart: React.FC = () => {
   };
 
   if (cartItems.length === 0) {
-    return <EmptyCart />;
+    return (
+      <EmptyCart
+        title="Your cart is empty!"
+        subTitle="You've no items in your shopping cart."
+        secondarySubTitle="Let's go buy something"
+      />
+    );
   }
 
   return (
