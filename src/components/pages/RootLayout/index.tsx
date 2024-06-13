@@ -35,7 +35,7 @@ const RootLayout = () => {
       <Navbar />
       <Snackbar />
       <Outlet></Outlet>
-      {/* <Footer /> */}
+      <Footer />
     </main>
   );
 };
