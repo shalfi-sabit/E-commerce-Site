@@ -41,7 +41,7 @@ const FillButton: React.FC<ButtonProps> = ({
       {!onClick && (
         <button
           type={type}
-          className={` hover:bg-red-400 rounded text-white-900 
+          className={`rounded text-white-900 
     font-medium text-[12px] sm:text-sm lg:text-[16px] px-5 sm:px-6 lg:px-7 py-1 sm:py-[6px] lg:py-2 duration-200 text-nowrap ${className} ${
             isCouponButtonDisabled || isPlaceOrderButtonDisabled || isSubmitting
               ? "bg-red-200"

@@ -14,6 +14,7 @@ import useCouponCode from "../../../hooks/useCouponCode";
 import { useDispatch, useSelector } from "react-redux";
 import { snackbarActions } from "../../../redux-store/slices/snackbarSlice";
 import { RootState } from "../../../redux-store/redux-store";
+import { cartActions } from "../../../redux-store/slices/cartSlice";
 
 const Checkout: React.FC = () => {
   const {
@@ -43,7 +44,7 @@ const Checkout: React.FC = () => {
     handleApplyCouponCode,
     setIsPlaceOrderButtonDisabled,
     isPlaceOrderButtonDisabled,
-  } = useCouponCode({ setSubTotal });
+  } = useCouponCode({ setSubTotal, subTotal });
 
   const shippingCharge = 30;
 
@@ -72,6 +73,8 @@ const Checkout: React.FC = () => {
         message: "Your Order has been placed",
       })
     );
+    dispatch(cartActions.handleClearCart());
+    setSubTotal(0);
   };
 
   return (

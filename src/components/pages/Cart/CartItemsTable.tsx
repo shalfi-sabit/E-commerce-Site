@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import truncateTitle from "../../../utils/truncateTitle";
 import RemoveButtonContainer from "../../UI/RemoveButtonContainer";
@@ -11,6 +11,7 @@ import { cartActions } from "../../../redux-store/slices/cartSlice";
 
 import UpArrowIcon from "../../../assets/images/up-arrow.png";
 import DownArrowIcon from "../../../assets/images/down-arrow.png";
+import "./index.css";
 
 const CartItemsTable: React.FC<cartItemsTableProps> = ({
   onHandleQuantityChange,
@@ -18,27 +19,39 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [removing, setRemoving] = useState<number | null>(null);
 
   const handleQuantityOnChange = (
     event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
+    let quantity = parseInt(event.target.value, 10) || 0;
+
+    // Handle the case when the input is cleared (empty string)
+    if (isNaN(quantity)) {
+      quantity = 0;
+    }
+
     dispatch(
       cartActions.handleProductSetQuantity({
         id: cartItems[index].id,
-        quantity: event.target.value,
+        quantity: quantity,
       })
     );
   };
 
-  const removeItemHandler = (id: number) => {
-    dispatch(cartActions.handleProductRemove({ id }));
-    dispatch(
-      snackbarActions.handleSnackbarOpen({
-        severity: "success",
-        message: "Product removed from cart",
-      })
-    );
+  const removeItemHandler = (id: number, index: number) => {
+    setRemoving(index);
+    setTimeout(() => {
+      dispatch(cartActions.handleProductRemove({ id }));
+      dispatch(
+        snackbarActions.handleSnackbarOpen({
+          severity: "success",
+          message: "Product removed from cart",
+        })
+      );
+      setRemoving(null);
+    }, 300);
   };
 
   const handleIncrement = (index: number) => {
@@ -47,13 +60,19 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
 
   const handleDecrement = (index: number) => {
     if (cartItems[index].quantity === 1) {
-      dispatch(cartActions.handleProductDecrease({ id: cartItems[index].id }));
-      dispatch(
-        snackbarActions.handleSnackbarOpen({
-          severity: "success",
-          message: "Product removed from cart",
-        })
-      );
+      setRemoving(index);
+      setTimeout(() => {
+        dispatch(
+          cartActions.handleProductDecrease({ id: cartItems[index].id })
+        );
+        dispatch(
+          snackbarActions.handleSnackbarOpen({
+            severity: "success",
+            message: "Product removed from cart",
+          })
+        );
+        setRemoving(null);
+      }, 300);
     } else {
       dispatch(cartActions.handleProductDecrease({ id: cartItems[index].id }));
     }
@@ -72,59 +91,59 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
         </thead>
 
         <tbody>
-          {cartItems.map((item: CartProduct, index: number) => {
-            return (
-              <tr key={index} className="shadow-md">
-                <td className="p-4 flex items-center cursor-pointer relative">
-                  <div className="relative inline-block">
-                    <img
-                      src={item.image}
-                      alt="product"
-                      className="hidden md:block w-12 mr-20 lg:mr-4"
-                    />
-                  </div>
-                  <RemoveButtonContainer
-                    onClick={() => removeItemHandler(item.id)}
+          {cartItems.map((item: CartProduct, index: number) => (
+            <tr
+              key={index}
+              className={`table-row ${
+                removing === index ? "removing" : ""
+              } shadow-md hover:bg-slate-100`}
+            >
+              <td className="p-4 flex items-center cursor-pointer relative">
+                <div className="relative inline-block">
+                  <img
+                    src={item.image}
+                    alt="product"
+                    className="hidden md:block w-12 mr-20 lg:mr-4"
                   />
-                  {truncateTitle(item.title, 20)}
-                </td>
-                <td className="p-4 text-center">{item.price}</td>
-                <td className="p-4 text-center py-2 px-4">
-                  <div className="flex items-center justify-center">
-                    <div className="border-2 w-fit flex pl-1 lg:pr-1 rounded-md">
-                      <input
-                        type="number"
-                        value={item.quantity}
-                        min={0}
-                        onChange={(event) =>
-                          handleQuantityOnChange(event, index)
-                        }
-                        className="cart-input py-1 text-center w-4 xs:w-6 sm:w-6 md:w-8 lg:w-10 focus:outline-none"
+                </div>
+                <RemoveButtonContainer
+                  onClick={() => removeItemHandler(item.id, index)}
+                />
+                {truncateTitle(item.title, 20)}
+              </td>
+              <td className="p-4 text-center">${item.price}</td>
+              <td className="p-4 text-center py-2 px-4">
+                <div className="flex items-center justify-center">
+                  <div className="border-2 w-fit flex pl-1 lg:pr-1 rounded-md">
+                    <input
+                      type="number"
+                      value={item.quantity.toString().replace(/^0+/, "")}
+                      min={0}
+                      onChange={(event) => handleQuantityOnChange(event, index)}
+                      className="cart-input py-1 text-center w-4 xs:w-6 sm:w-6 md:w-8 lg:w-10 focus:outline-none bg-inherit"
+                    />
+                    <div className="h-full flex flex-col gap-0 lg:gap-1 py-1 pr-1">
+                      <img
+                        src={UpArrowIcon}
+                        alt="up-arrow"
+                        className="w-4 xs:w-4 sm:w-3 cursor-pointer"
+                        onClick={() => handleIncrement(index)}
                       />
-
-                      <div className="h-full flex flex-col gap-0 lg:gap-1 py-1 pr-1">
-                        <img
-                          src={UpArrowIcon}
-                          alt="up-arrow"
-                          className="w-4 xs:w-4 sm:w-3 cursor-pointer"
-                          onClick={() => handleIncrement(index)}
-                        />
-                        <img
-                          src={DownArrowIcon}
-                          alt="down-arrow"
-                          className="w-4 xs:w-4 sm:w-3 cursor-pointer"
-                          onClick={() => handleDecrement(index)}
-                        />
-                      </div>
+                      <img
+                        src={DownArrowIcon}
+                        alt="down-arrow"
+                        className="w-4 xs:w-4 sm:w-3 cursor-pointer"
+                        onClick={() => handleDecrement(index)}
+                      />
                     </div>
                   </div>
-                </td>
-                <td className="py-4 pr-8 text-right">
-                  {(item.quantity * item.price).toFixed(2)}
-                </td>
-              </tr>
-            );
-          })}
+                </div>
+              </td>
+              <td className="py-4 pr-8 text-right">
+                ${(item.quantity * item.price).toFixed(2)}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 

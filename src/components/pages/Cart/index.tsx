@@ -5,6 +5,7 @@ import CartItemsTable from "./CartItemsTable";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux-store/redux-store";
 import EmptyCart from "./EmptyCart";
+import "./index.css";
 
 export interface CartItem {
   title: string;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApplyCouponCode from "../../UI/ApplyCouponCode";
 import useCouponCode from "../../../hooks/useCouponCode";
@@ -18,7 +18,17 @@ const BillingSummary = () => {
 
   const [subTotal, setSubTotal] = useState(initialSubtotal);
   const { isCouponButtonDisabled, setCouponCode, handleApplyCouponCode } =
-    useCouponCode({ setSubTotal });
+    useCouponCode({ setSubTotal, subTotal });
+
+  useEffect(() => {
+    const newSubTotal = cartItems.reduce((accumulator, cartItem) => {
+      return parseFloat(
+        (accumulator + cartItem.price * cartItem.quantity).toFixed(2)
+      );
+    }, 0);
+
+    setSubTotal(newSubTotal);
+  }, [cartItems]);
 
   return (
     <div className="flex flex-col gap-6 md:flex-row md:justify-between py-10 md:py-20 md:items-start">

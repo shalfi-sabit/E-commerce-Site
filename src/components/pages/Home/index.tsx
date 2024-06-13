@@ -1,7 +1,7 @@
 import FlashSale from "../../FlashSales";
 import HeroSection from "../../HeroSection";
 import TopRatedProducts from "../../TopRatedProducts";
-import BrowseByCategory from "../../BrowseByCategory";
+import BrowseByCategory from "../../BrowseByCategory/index";
 import OurProducts from "../../OurProducts";
 const Home = () => {
   return (
