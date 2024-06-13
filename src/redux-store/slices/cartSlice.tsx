@@ -45,6 +45,16 @@ const cartSlice = createSlice({
         }
       }
     },
+    handleProductSetQuantity: (state, action) => {
+      const existingProductIndex = state.cartItems.findIndex(
+        (cartItem) => cartItem.id === action.payload.id
+      );
+
+      if (existingProductIndex !== -1) {
+        state.cartItems[existingProductIndex].quantity =
+          action.payload.quantity;
+      }
+    },
   },
 });
 

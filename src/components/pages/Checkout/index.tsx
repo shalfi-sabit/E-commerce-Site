@@ -9,11 +9,11 @@ import checkoutSchema from "../../../form-schema/checkoutSchema";
 import FillButton from "../../UI/Button/FillButton";
 import CheckoutSummary from "./CheckoutSummary";
 import BreadCrumb from "../../shared/BreadCrumb";
-import cartItems from "../../../data/dummyCartItems";
 import { CheckoutFormData } from "../../../models/checkoutFormData";
 import useCouponCode from "../../../hooks/useCouponCode";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { snackbarActions } from "../../../redux-store/slices/snackbarSlice";
+import { RootState } from "../../../redux-store/redux-store";
 
 const Checkout: React.FC = () => {
   const {
@@ -26,14 +26,16 @@ const Checkout: React.FC = () => {
   const dispatch = useDispatch();
   const [saveInformation, setSaveInformation] = useState<boolean>(false);
   const [isCashSelected, setIsCashSelected] = useState<boolean>(true);
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   const initialSubtotal = cartItems.reduce((accumulator, cartItem) => {
     return parseFloat(
-      (accumulator + cartItem.price * cartItem.count).toFixed(2)
+      (accumulator + cartItem.price * cartItem.quantity).toFixed(2)
     );
   }, 0);
 
   const [subTotal, setSubTotal] = useState(initialSubtotal);
+
   const {
     couponCode,
     isCouponButtonDisabled,

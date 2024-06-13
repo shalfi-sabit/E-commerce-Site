@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import truncateTitle from "../../../utils/truncateTitle";
 import RemoveButtonContainer from "../../UI/RemoveButtonContainer";
@@ -18,6 +18,18 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleQuantityOnChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    dispatch(
+      cartActions.handleProductSetQuantity({
+        id: cartItems[index].id,
+        quantity: event.target.value,
+      })
+    );
+  };
 
   const removeItemHandler = (id: number) => {
     dispatch(cartActions.handleProductRemove({ id }));
@@ -82,12 +94,11 @@ const CartItemsTable: React.FC<cartItemsTableProps> = ({
                     <div className="border-2 w-fit flex pl-1 lg:pr-1 rounded-md">
                       <input
                         type="number"
-                        value={
-                          item.quantity < 10
-                            ? "0" + item.quantity
-                            : item.quantity
-                        }
+                        value={item.quantity}
                         min={0}
+                        onChange={(event) =>
+                          handleQuantityOnChange(event, index)
+                        }
                         className="cart-input py-1 text-center w-4 xs:w-6 sm:w-6 md:w-8 lg:w-10 focus:outline-none"
                       />
 
