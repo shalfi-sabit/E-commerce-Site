@@ -31,7 +31,7 @@ const MoveToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="p-2 bg-red-200 hover:bg-red-100 text-white rounded-full shadow-md transition-all duration-300"
+          className="p-2 bg-slate-200 hover:bg-slate-300 text-white rounded-full shadow-md transition-all duration-300"
         >
           <img
             src={UpArrowIcon}
