@@ -30,6 +30,7 @@ const Carousel: React.FC = () => {
             }}
             modules={[Pagination, Autoplay]} // Add Autoplay module
             slidesPerView={1}
+            speed={800}
             className=""
           >
             <SwiperSlide>
