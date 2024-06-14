@@ -15,6 +15,7 @@ const productsSlice = createSlice({
   reducers: {
     handleProductAdd: (state, action: PayloadAction<product[]>) => {
       state.products = action.payload;
+      console.log(state.products, " => !added products....");
     },
   },
 });

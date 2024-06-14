@@ -26,7 +26,7 @@ const ProfileDropdown = () => {
   };
 
   return (
-    <div className="p-3 sm:p-4 bg-gray-500 absolute xl:right-0 rounded backdrop-blur-md text-white-900 text-[12px] sm:text-sm flex flex-col gap-2 sm:gap-3 mt-1 z-[3]">
+    <div className="p-3 sm:p-4 bg-gray-500 absolute xl:right-0 rounded  backdrop-blur-md text-white-900 text-[12px] sm:text-sm flex flex-col gap-2 sm:gap-3 mt-1 z-[3]">
       <DropdownRow
         image={<ProfileIconOutlinedWhite />}
         title={"Manage My Account"}

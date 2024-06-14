@@ -15,7 +15,7 @@ const DropdownRow: React.FC<dropdownRowProps> = ({
 }) => {
   return (
     <div
-      className={`w-full font-light text-nowrap flex items-center justify-start gap-3 cursor-pointer ${className}`}
+      className={`w-full font-medium text-nowrap flex items-center justify-start gap-3 cursor-pointer ${className}`}
       onClick={onClick}
     >
       {image}

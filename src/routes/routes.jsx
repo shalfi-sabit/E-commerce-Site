@@ -25,48 +25,49 @@ import ProductDetails from "../components/pages/ProductDetails/";
 
 export const routes = createBrowserRouter([
   {
+    id: "root",
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorBoundary />,
     loader: homeLoader,
     children: [
       { index: true, element: <Home />, loader: homeLoader },
-      {
-        path: "signin",
-        element: <SignIn />,
-        loader: authLoader,
-        action: loginAction,
-      },
-      { path: "signup", element: <SignUp />, loader: authLoader },
-      { path: "contact", element: <Contact /> },
-      { path: "about", element: <About /> },
-      {
-        path: "account",
-        element: (
-          <RequireAuth>
-            <Account />
-          </RequireAuth>
-        ),
-        children: [
-          { index: true, element: <EditProfileForm /> },
-          { path: "address-book", element: <AddressBook /> },
-          { path: "my-payment-options", element: <MyPaymentOptions /> },
-          { path: "my-returns", element: <MyReturns /> },
-          { path: "my-cancellations", element: <MyCancellations /> },
-        ],
-      },
-      { path: "wishlist", element: <Wishlist /> },
-      { path: "cart", element: <Cart /> },
-      {
-        path: "checkout",
-        element: (
-          <RequireAuth>
-            <Checkout />
-          </RequireAuth>
-        ),
-      },
-      { path: "products", element: <ExploreAllProducts /> },
-      { path: "product/:id", element: <ProductDetails /> },
+      // {
+      //   path: "signin",
+      //   element: <SignIn />,
+      //   loader: authLoader,
+      //   action: loginAction,
+      // },
+      // { path: "signup", element: <SignUp />, loader: authLoader },
+      // { path: "contact", element: <Contact /> },
+      // { path: "about", element: <About /> },
+      // {
+      //   path: "account",
+      //   element: (
+      //     <RequireAuth>
+      //       <Account />
+      //     </RequireAuth>
+      //   ),
+      //   children: [
+      //     { index: true, element: <EditProfileForm /> },
+      //     { path: "address-book", element: <AddressBook /> },
+      //     { path: "my-payment-options", element: <MyPaymentOptions /> },
+      //     { path: "my-returns", element: <MyReturns /> },
+      //     { path: "my-cancellations", element: <MyCancellations /> },
+      //   ],
+      // },
+      // { path: "wishlist", element: <Wishlist /> },
+      // { path: "cart", element: <Cart /> },
+      // {
+      //   path: "checkout",
+      //   element: (
+      //     <RequireAuth>
+      //       <Checkout />
+      //     </RequireAuth>
+      //   ),
+      // },
+      // { path: "products", element: <ExploreAllProducts /> },
+      // { path: "product/:id", element: <ProductDetails /> },
     ],
   },
 ]);

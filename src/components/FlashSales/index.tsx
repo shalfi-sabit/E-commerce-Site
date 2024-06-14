@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { Suspense, useRef } from "react";
+import { Await, useNavigate, useRouteLoaderData } from "react-router-dom";
 import SectionHeader from "../UI/SectionHeader";
 import SectionTitle from "../UI/SectionTitle";
 import Timer from "./Timer";
@@ -13,16 +10,20 @@ import FillButton from "../UI/Button/FillButton";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux-store/redux-store";
 import product from "../../models/product";
+import { homeLoaderData } from "../../models/homeLoaderData";
+import FlashSalesSkeleton from "./FlashSalesSkeleton";
 
 const CART_ITEMS_ID: number[] = [];
 for (let i = 1; i < 20; i += 2) {
   CART_ITEMS_ID.push(i);
 }
 
-const index = () => {
+const Index = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const products = useSelector((state: RootState) => state.products.products);
+
+  // Use useRouteLoaderData to fetch data
+  const { products } = useRouteLoaderData("root") as any;
 
   const scroll = (scrollOffset: number) => {
     if (scrollContainerRef.current) {
@@ -33,60 +34,68 @@ const index = () => {
     }
   };
 
-  const handleLeftArrowClciked = () => {
+  const handleLeftArrowClicked = () => {
     scroll(-200);
   };
 
-  const handleRightArrowClciked = () => {
+  const handleRightArrowClicked = () => {
     scroll(200);
   };
 
   return (
-    <section className="mt-8 sm:mt-10 md:mt-16 lg:mt-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
-      <SectionHeader sectionHeader="Today's" />
-      <SectionTitle text="Flash Sales" timer={<Timer />}>
-        <ArrowButtons
-          leftArrowOnClick={handleLeftArrowClciked}
-          rightArrowOnClick={handleRightArrowClciked}
-        />
-      </SectionTitle>
-      <Wrapper className="pb-5 sm:pb-7 md:pb-9 border-b ">
-        <div
-          className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-scroll horizontal-scrollbar-hide py-3"
-          ref={scrollContainerRef}
-        >
-          {CART_ITEMS_ID.map((curItemId) => {
-            const item: product = products[curItemId];
+    <FlashSalesSkeleton />
+    // <Suspense fallback={<FlashSalesSkeleton />}>
+    //   <Await resolve={products}>
+    //     {(resolvedProducts: any) => (
+    //       <section className="mt-8 sm:mt-10 md:mt-16 lg:mt-20 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
+    //         <SectionHeader sectionHeader="Today's" />
+    //         <SectionTitle text="Flash Sales" timer={<Timer />}>
+    //           <ArrowButtons
+    //             leftArrowOnClick={handleLeftArrowClicked}
+    //             rightArrowOnClick={handleRightArrowClicked}
+    //           />
+    //         </SectionTitle>
+    //         <Wrapper className="pb-5 sm:pb-7 md:pb-9 border-b">
+    //           <div
+    //             className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-scroll horizontal-scrollbar-hide py-3"
+    //             ref={scrollContainerRef}
+    //           >
+    //             {CART_ITEMS_ID.map((curItemId) => {
+    //               const item: product = resolvedProducts[curItemId];
+    //               if (!item) return null; // Handle cases where item is undefined
 
-            return (
-              <ProductCard
-                key={item?.id}
-                id={item?.id}
-                imageSource={item?.image}
-                productName={item?.title}
-                price={item?.price}
-                prevPrice={300}
-                rating={item?.rating.rate}
-                count={item?.rating.count}
-                discount={Math.floor(Math.random() * (60 - 40 + 1)) + 40}
-                showAddToWishlistIcon
-                showSeeDetailsIcon
-              />
-            );
-          })}
-        </div>
-        <div className="flex justify-center items-center mt-6 sm:mt-7 md:mt-8">
-          <FillButton
-            onClick={() => {
-              navigate("/products");
-            }}
-            text="View All Products"
-            className="w-fit"
-          />
-        </div>
-      </Wrapper>
-    </section>
+    //               return (
+    //                 <ProductCard
+    //                   key={item?.id}
+    //                   id={item?.id}
+    //                   imageSource={item?.image}
+    //                   productName={item?.title}
+    //                   price={item?.price}
+    //                   prevPrice={300}
+    //                   rating={item?.rating.rate}
+    //                   count={item?.rating.count}
+    //                   discount={Math.floor(Math.random() * (60 - 40 + 1)) + 40}
+    //                   showAddToWishlistIcon
+    //                   showSeeDetailsIcon
+    //                 />
+    //               );
+    //             })}
+    //           </div>
+    //           <div className="flex justify-center items-center mt-6 sm:mt-7 md:mt-8">
+    //             <FillButton
+    //               onClick={() => {
+    //                 navigate("/products");
+    //               }}
+    //               text="View All Products"
+    //               className="w-fit"
+    //             />
+    //           </div>
+    //         </Wrapper>
+    //       </section>
+    //     )}
+    //   </Await>
+    // </Suspense>
   );
 };
 
-export default index;
+export default Index;
