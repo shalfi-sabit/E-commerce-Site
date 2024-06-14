@@ -20,7 +20,6 @@ const wishlistSlice = createSlice({
       const existingProductIndex = state.wishlistItems.findIndex(
         (wishlistItem) => wishlistItem.id === action.payload.id
       );
-      console.log(action.payload);
 
       if (existingProductIndex === -1) {
         state.wishlistItems.push(action.payload);

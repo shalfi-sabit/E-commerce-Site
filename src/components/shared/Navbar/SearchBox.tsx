@@ -18,7 +18,6 @@ export default function SearchBar() {
     loadedProducts: product[]
   ) => {
     setSearchText(event.target.value);
-    console.log(loadedProducts);
 
     if (Array.isArray(loadedProducts)) {
       const matchedItems: product[] = loadedProducts.filter((item: any) => {
