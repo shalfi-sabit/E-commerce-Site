@@ -61,7 +61,6 @@ const SignIn = () => {
 
     if (searchParams.get("loginSuccess")) {
       const userFullName = getUserFullName();
-      console.log(userFullName);
       dispatch(
         snackbarActions.handleSnackbarOpen({
           severity: "success",

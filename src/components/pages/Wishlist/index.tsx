@@ -32,7 +32,6 @@ const Wishlist = () => {
             count: item.rating.count,
           },
         };
-        console.log(curProduct);
 
         dispatch(
           cartActions.handleProductAdd({ product: curProduct, quantity: 1 })

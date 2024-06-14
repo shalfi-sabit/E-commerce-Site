@@ -18,7 +18,6 @@ export const loginAction: (
 
     const token = getToken.data.token;
     localStorage.setItem("token", token);
-    console.log(token);
 
     const allUsers = (await axios.get("https://fakestoreapi.com/users")).data;
 
