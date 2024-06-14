@@ -1,5 +1,4 @@
 import axios from "axios";
-import { homeLoaderData } from "../../../models/homeLoaderData";
 import { defer } from "react-router-dom";
 import product from "../../../models/product";
 

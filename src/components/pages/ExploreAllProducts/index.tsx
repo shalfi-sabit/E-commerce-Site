@@ -19,7 +19,7 @@ const index = () => {
 
             <SectionTitle text="Explore Our Products" />
             <Wrapper className="flex items-stretch flex-wrap gap-2 sm:gap-4 md:gap-5 my-8 md:my-10">
-              {products.map((item) => (
+              {products.map((item: any) => (
                 <ProductCard
                   key={item?.id}
                   id={item?.id}

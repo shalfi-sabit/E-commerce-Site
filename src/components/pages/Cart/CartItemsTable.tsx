@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, Suspense } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { Await, useNavigate, useRouteLoaderData } from "react-router-dom";
 import truncateTitle from "../../../utils/truncateTitle";
 import RemoveButtonContainer from "../../UI/RemoveButtonContainer";

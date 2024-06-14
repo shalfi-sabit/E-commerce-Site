@@ -1,8 +1,5 @@
 import React from "react";
 import SmallProductImage from "./SmallProductImage";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux-store/redux-store";
-import { useRouteLoaderData } from "react-router-dom";
 import product from "../../../models/product";
 
 const ProductImageCard: React.FC<{ id: number; products: product[] }> = ({

@@ -2,7 +2,7 @@ import TimerItem from "./TimerItem";
 import useTimer from "../../hooks/useTimer";
 
 const Timer = () => {
-  const { timeLeft, days, hours, minutes, seconds } = useTimer({
+  const { timeLeft, hours, minutes, seconds } = useTimer({
     timerDays: 1,
   });
 
