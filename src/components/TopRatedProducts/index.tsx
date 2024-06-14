@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { useNavigate } from "react-router-dom";
-
-import FillButton from "../UI/Button/FillButton";
+import { Suspense } from "react";
+import { Await, useNavigate, useRouteLoaderData } from "react-router-dom";
+import ProductListSkeleton from "../Skeleton/ProductsListSkeleton";
+import product from "../../models/product";
 import SectionHeader from "../UI/SectionHeader";
 import SectionTitle from "../UI/SectionTitle";
-import ProductCard from "../ProductCard";
+import FillButton from "../UI/Button/FillButton";
+import ProductCard from "../ProductCard/index";
 import Wrapper from "../UI/Wrapper";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux-store/redux-store";
 
-const index = () => {
+const ProductSection = ({ products }: { products: product[] }) => {
   const navigate = useNavigate();
-  const products = useSelector((state: RootState) => state.products.products);
+  const topRatedProducts = products.slice(0, 4);
+
   return (
     <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 flex flex-col gap-3 sm:gap-5 mb-5 sm:mb-7">
       <SectionHeader sectionHeader="This Month" />
@@ -27,7 +28,7 @@ const index = () => {
 
       <Wrapper className="pb-5 sm:pb-7 md:pb-9">
         <div className="flex items-stretch flex-wrap gap-2 sm:gap-4 md:gap-5 my-8 md:my-10">
-          {products.slice(0, 4).map((item) => (
+          {topRatedProducts.map((item: product) => (
             <ProductCard
               key={item?.id}
               id={item?.id}
@@ -48,4 +49,18 @@ const index = () => {
   );
 };
 
-export default index;
+const Index = () => {
+  const { products } = useRouteLoaderData("root") as any;
+
+  return (
+    <Suspense fallback={<ProductListSkeleton />}>
+      <Await resolve={products}>
+        {(products) => {
+          return <ProductSection products={products} />;
+        }}
+      </Await>
+    </Suspense>
+  );
+};
+
+export default Index;

@@ -9,10 +9,13 @@ import DeliveryCard from "./DeliveryCard";
 import { snackbarActions } from "../../../redux-store/slices/snackbarSlice";
 import { wishlistActions } from "../../../redux-store/slices/wishlistSlice";
 import { cartActions } from "../../../redux-store/slices/cartSlice";
+import product from "../../../models/product";
 
-const ProductDetails: React.FC<{ id: number }> = ({ id }) => {
+const ProductDetails: React.FC<{ id: number; products: product[] }> = ({
+  id,
+  products,
+}) => {
   const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.products.products);
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const curProduct = products.filter((product) => product.id === id)[0];
   const currentCartProduct = cartItems.filter((item) => item.id === id)[0];

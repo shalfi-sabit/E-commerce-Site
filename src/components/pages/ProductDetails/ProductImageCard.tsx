@@ -2,9 +2,13 @@ import React from "react";
 import SmallProductImage from "./SmallProductImage";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux-store/redux-store";
+import { useRouteLoaderData } from "react-router-dom";
+import product from "../../../models/product";
 
-const ProductImageCard: React.FC<{ id: number }> = ({ id }) => {
-  const products = useSelector((state: RootState) => state.products.products);
+const ProductImageCard: React.FC<{ id: number; products: product[] }> = ({
+  id,
+  products,
+}) => {
   const curProduct = products.filter((product) => product.id === id)[0];
 
   return (

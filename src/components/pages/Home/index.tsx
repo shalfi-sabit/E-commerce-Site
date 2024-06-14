@@ -12,12 +12,12 @@ const Home = () => {
     <main className="overflow-x-hidden">
       <HeroSection />
       <FlashSale />
-      {/* <BrowseByCategory />
+      <BrowseByCategory />
       <TopRatedProducts />
       <SpecialOffer />
       <OurProducts />
       <NewArrivals />
-      <CustomerBenefits /> */}
+      <CustomerBenefits />
     </main>
   );
 };

@@ -5,19 +5,23 @@ const ProductCardSkeleton: React.FC<{ className?: string }> = ({
   className,
 }) => {
   return (
-    <div className={`${className}`}>
-      <Skeleton variant="rectangular" className="h-full w-[100%]" />
-
-      {/* Title skeleton */}
-      <Skeleton variant="text" sx={{ width: "60%", marginBottom: 2, mt: 2 }} />
-
+    <div className={`w-[48%] xs:w-[23%]  ${className}`}>
       <Skeleton
         variant="rounded"
-        sx={{ width: "80%", height: "100%", marginBottom: 1 }}
+        className="w-[100%]"
+        sx={{
+          height: {
+            xs: "100px",
+            sm: "150px",
+            md: "200px",
+          },
+        }}
+        animation="wave"
       />
-      <Skeleton variant="text" sx={{ width: "70%", marginBottom: 1 }} />
-      <Skeleton variant="text" sx={{ width: "60%", marginBottom: 1 }} />
-      <Skeleton variant="text" sx={{ width: "50%", marginBottom: 1 }} />
+
+      <Skeleton variant="text" className="w-[40%] text-sm" animation="wave" />
+      <Skeleton variant="text" className="w-[20%] text-sm" animation="wave" />
+      <Skeleton variant="text" className="w-[70%] text-sm" animation="wave" />
     </div>
   );
 };
