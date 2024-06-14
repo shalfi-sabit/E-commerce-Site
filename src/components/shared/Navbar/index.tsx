@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import Wrapper from "../../UI/Wrapper.tsx";
 import ChooseLanguage from "./ChooseLanguage.tsx";
@@ -18,6 +18,7 @@ import { RootState } from "../../../redux-store/redux-store.tsx";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const {
     isMobileSidebarOpen: isMobileNavbarOpen,
     setIsMobileSidebarOpen: setIsMobileNavbarOpen,
@@ -46,7 +47,12 @@ const Navbar: React.FC = () => {
 
         <nav className="navbar-main border-b-[1px] pb-1 md:pb-3 border-gray-200 pt-5 md:pt-7 bg-white-900">
           <Wrapper className="flex justify-between items-center">
-            <h1 className="font-extrabold text-xl md:text-2xl">SnapShop</h1>
+            <h1
+              className="font-extrabold text-xl md:text-2xl cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              SnapShop
+            </h1>
 
             <ul className="hidden sm:flex sm:gap-4 md:gap-8 text-md">
               <li>
