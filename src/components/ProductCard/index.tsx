@@ -9,13 +9,14 @@ import { Rating } from "@mui/material";
 import SeeDetailsIcon from "../../assets/icons/SeeDetailsIcon";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 import CartIconWhite from "../../assets/icons/CartIconWhite";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../redux-store/slices/cartSlice";
 import { snackbarActions } from "../../redux-store/slices/snackbarSlice";
 import { wishlistActions } from "../../redux-store/slices/wishlistSlice";
 import AddToWishlistIconContainer from "../UI/AddToWishlistIconContainer";
 import { Await, useNavigate, useRouteLoaderData } from "react-router-dom";
 import ProductCardSkeleton from "../Skeleton/ProductCardSkeleton";
+import { RootState } from "../../redux-store/redux-store";
 
 const index: React.FC<productCardProps> = ({
   id,
@@ -36,6 +37,11 @@ const index: React.FC<productCardProps> = ({
   const { products } = useRouteLoaderData("root") as any;
   const { isHovered, handleMouseOver, handleMouseOut } = useMouseOver();
   const routeLoaderData = useRouteLoaderData("root") as any;
+  const wishlistItems = useSelector(
+    (state: RootState) => state.wishlist.wishlistItems
+  );
+
+  const isPresentInWishlist = wishlistItems.find((item: any) => item.id === id);
 
   const addItemHandler = () => {
     const curProduct = {
@@ -155,7 +161,7 @@ const index: React.FC<productCardProps> = ({
               </p>
             )}
 
-            <div className="absolute flex flex-col gap-1 md:gap-2 top-2 right-2 md:top-3 md:right-3 ">
+            <div className="absolute flex flex-col items-center gap-1 md:gap-2 top-2 right-2 md:top-3 md:right-3 ">
               {showDeleteIcon && (
                 <span
                   title="Delete"
@@ -165,10 +171,29 @@ const index: React.FC<productCardProps> = ({
                 </span>
               )}
 
-              {showAddToWishlistIcon && (
+              {showAddToWishlistIcon && !isPresentInWishlist && (
                 <AddToWishlistIconContainer
                   onClick={() => addToWishlistHandler(id)}
                 />
+              )}
+
+              {showAddToWishlistIcon && isPresentInWishlist && (
+                <svg
+                  viewBox="0 0 34 34"
+                  fill="#DB4444"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:-w[30px] md:-h[30px] lg:w-[34px] lg:h-[34px] cursor-pointer"
+                  onClick={() => removeFromWishlistHandler(id)}
+                >
+                  <circle cx="17" cy="17" r="17" fill="white" />
+                  <path
+                    d="M13 10C10.7912 10 9 11.7396 9 13.8859C9 15.6185 9.7 19.7305 16.5904 23.8873C16.7138 23.961 16.8555 24 17 24C17.1445 24 17.2862 23.961 17.4096 23.8873C24.3 19.7305 25 15.6185 25 13.8859C25 11.7396 23.2088 10 21 10C18.7912 10 17 12.3551 17 12.3551C17 12.3551 15.2088 10 13 10Z"
+                    stroke="#DB4444"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               )}
 
               {showSeeDetailsIcon && (
