@@ -109,7 +109,7 @@ const index: React.FC<productCardProps> = ({
 
               {isHovered && (
                 <div
-                  className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer"
+                  className="flex items-center justify-center gap-1 md:gap-2 bg-black-900 text-white-900 absolute bottom-0 py-1 w-full text-center text-[10px] md:text-[12px] cursor-pointer transition-all duration-1000"
                   onClick={addItemHandler}
                 >
                   <CartIconWhite />

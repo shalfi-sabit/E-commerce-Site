@@ -1,30 +1,37 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, Suspense, useEffect, useRef, useState } from "react";
 import SearchIcon from "../../../assets/icons/SearchIcon";
-import { RootState } from "../../../redux-store/redux-store";
 import SearchResults from "./SearchResults";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchResultActions } from "../../../redux-store/slices/searchResult";
+import { Await, useRouteLoaderData } from "react-router-dom";
+import product from "../../../models/product";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const products = useSelector((state: RootState) => state.products.products);
+  const { products } = useRouteLoaderData("root") as any;
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    loadedProducts: product[]
+  ) => {
     setSearchText(event.target.value);
+    console.log(loadedProducts);
 
-    const matchedItems = products.filter((item) => {
-      const enteredValue = event.target.value.toLowerCase();
-      const isTitleMatched = item.title.toLowerCase().includes(enteredValue);
-      const isCategoryMatched = item.category
-        .toLowerCase()
-        .includes(enteredValue);
-      return isTitleMatched || isCategoryMatched;
-    });
+    if (Array.isArray(loadedProducts)) {
+      const matchedItems: product[] = loadedProducts.filter((item: any) => {
+        const enteredValue = event.target.value.toLowerCase();
+        const isTitleMatched = item.title.toLowerCase().includes(enteredValue);
+        const isCategoryMatched = item.category
+          .toLowerCase()
+          .includes(enteredValue);
+        return isTitleMatched || isCategoryMatched;
+      });
 
-    dispatch(searchResultActions.handleProductAdd(matchedItems));
+      dispatch(searchResultActions.handleProductAdd(matchedItems));
+    }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -41,22 +48,32 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <div className="relative" ref={ref} onFocus={() => setIsFocused(true)}>
-      <div className="bg-gray-100 rounded flex items-center w-fit">
-        <input
-          type="text"
-          name="search-box"
-          id="search-box"
-          placeholder="What are you looking for?"
-          className="bg-gray-100 rounded text-[10px] sm:text-[12px] focus:border-none focus:outline-none pl-3 sm:pl-4 py-2"
-          value={searchText}
-          onChange={handleOnChange}
-        />
-        <div className="px-4">
-          <SearchIcon />
-        </div>
-      </div>
-      {searchText && isFocused && <SearchResults />}
-    </div>
+    <Suspense>
+      <Await resolve={products}>
+        {(products) => (
+          <div
+            className="relative"
+            ref={ref}
+            onFocus={() => setIsFocused(true)}
+          >
+            <div className="bg-gray-100 rounded flex items-center w-fit">
+              <input
+                type="text"
+                name="search-box"
+                id="search-box"
+                placeholder="What are you looking for?"
+                className="bg-gray-100 rounded text-[10px] sm:text-[12px] focus:border-none focus:outline-none pl-3 sm:pl-4 py-2"
+                value={searchText}
+                onChange={(event) => handleOnChange(event, products)}
+              />
+              <div className="px-4">
+                <SearchIcon />
+              </div>
+            </div>
+            {searchText && isFocused && <SearchResults />}
+          </div>
+        )}
+      </Await>
+    </Suspense>
   );
 }
