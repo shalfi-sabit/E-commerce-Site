@@ -59,7 +59,7 @@ const Footer = () => {
           <h3 className="text-[18px] lg:text-xl mb-1 lg:mb-5">Account</h3>
           <ul className="space-y-2 lg:space-y-4">
             <li>
-              <NavLink className="text-[14px] sm:text-[18px]" to="/my-account">
+              <NavLink className="text-[14px] sm:text-[18px]" to="/account">
                 My Account
               </NavLink>
             </li>
