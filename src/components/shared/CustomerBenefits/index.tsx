@@ -3,7 +3,7 @@ import DeliveryIcon from "../../../assets/icons/DeliveryIcon";
 import HeadsetIcon from "../../../assets/icons/HeadsetIcon";
 import GuaranteeIcon from "../../../assets/icons/GuaranteeIcon";
 import Wrapper from "../../UI/Wrapper";
-import FeaturesWrapper from "./CustomerBenefitsItem";
+import CustomerBenefitsItem from "./CustomerBenefitsItem";
 
 interface CustomerBenefitsProps {
   className?: string;
@@ -11,22 +11,22 @@ interface CustomerBenefitsProps {
 
 const CustomerBenefits: React.FC<CustomerBenefitsProps> = ({ className }) => {
   return (
-    <Wrapper className="m-auto py-10">
+    <Wrapper className="m-auto">
       <div
-        className={`flex flex-wrap justify-evenly items-center text-xs md:text-sm gap-6 ${className}`}
+        className={`flex flex-wrap justify-evenly items-center text-xs md:text-sm gap-4 p-6 xs:p-12 sm:p-14 md:p-16 lg:p-28 ${className}`}
       >
-        <FeaturesWrapper
+        <CustomerBenefitsItem
           icon={<DeliveryIcon />}
           title="FREE AND FAST DELIVERY"
           description="Free delivery for all orders over $140"
         />
-        <FeaturesWrapper
+        <CustomerBenefitsItem
           icon={<HeadsetIcon />}
           title="24/7 CUSTOMER SERVICE"
           description="Friendly 24/7 customer support"
         />
 
-        <FeaturesWrapper
+        <CustomerBenefitsItem
           icon={<GuaranteeIcon />}
           title="MONEY BACK GUARANTEE"
           description="We return money within 30 days"

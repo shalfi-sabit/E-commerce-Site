@@ -59,7 +59,7 @@ const Footer = () => {
           <h3 className="text-[18px] lg:text-xl mb-1 lg:mb-5">Account</h3>
           <ul className="space-y-2 lg:space-y-4">
             <li>
-              <NavLink className="text-[14px] sm:text-[18px]" to="/my-account">
+              <NavLink className="text-[14px] sm:text-[18px]" to="/account">
                 My Account
               </NavLink>
             </li>
@@ -138,7 +138,7 @@ const Footer = () => {
           </div>
         </FooterItemsWrapper>
       </Wrapper>
-      <p className="text-gray-700 text-center mt-10 border-t-[1px] border-gray-600 py-4 text-[14px] sm:text-[18px]">
+      <p className="text-gray-700 text-center mt-10 border-t-[1px] border-gray-700 py-4 text-[14px] sm:text-[18px]">
         © Copyright Brain Station 2024. All Rights Reserved.
       </p>
     </footer>

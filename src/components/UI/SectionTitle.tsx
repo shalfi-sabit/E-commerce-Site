@@ -19,7 +19,7 @@ const SectionTitle: React.FC<sectionTitleProps> = ({
       {timer ? (
         <>
           <div className="flex items-end gap-4 sm:gap-8 md:gap-12 lg:gap-16">
-            <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-4 w-fit">
+            <h1 className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-4 w-fit">
               {text}
             </h1>
             {timer}

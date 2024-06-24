@@ -1,11 +1,24 @@
-import React from 'react';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import product from "../../models/product";
 
-const productsSlice = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+interface ProductsState {
+  products: product[];
+}
+
+const initialState: ProductsState = {
+  products: [],
 };
 
-export default productsSlice;
+const productsSlice = createSlice({
+  name: "products",
+  initialState,
+  reducers: {
+    handleProductAdd: (state, action: PayloadAction<product[]>) => {
+      state.products = action.payload;
+    },
+  },
+});
+
+export const { handleProductAdd } = productsSlice.actions;
+
+export default productsSlice.reducer;

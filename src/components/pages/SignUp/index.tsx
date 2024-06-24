@@ -10,7 +10,12 @@ import Wrapper from "../../UI/Wrapper";
 import signupSchema from "../../../form-schema/signup";
 import SignUpProps from "../../../models/signupProps";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
+import AlreadyLoggedInMessage from "../../UI/AlreadyLoggedInMessage";
+
+type loaderDataType = {
+  showAlreadyLoggedInMessage?: boolean;
+};
 
 const SignUp = () => {
   const {
@@ -21,9 +26,15 @@ const SignUp = () => {
     resolver: yupResolver<SignUpProps>(signupSchema),
   });
 
+  const loaderData = (useLoaderData() as loaderDataType) || {};
+
   const onSubmit = (data: {}) => {
     console.log(data);
   };
+
+  if (loaderData.showAlreadyLoggedInMessage) {
+    return <AlreadyLoggedInMessage />;
+  }
 
   return (
     <Wrapper className=" flex justify-around w-3/4  my-10">

@@ -3,7 +3,11 @@ import { useLocation } from "react-router-dom";
 import Wrapper from "../../UI/Wrapper";
 import BreadcrumbItem from "./BreadCrumbItem";
 
-const BreadCrumb: React.FC = () => {
+type breadCrumbProps = {
+  children?: React.ReactNode;
+};
+
+const BreadCrumb: React.FC<breadCrumbProps> = ({ children }) => {
   const location = useLocation();
   let currentLink = "";
 
@@ -35,14 +39,19 @@ const BreadCrumb: React.FC = () => {
   }
 
   return (
-    <Wrapper>
-      <div
-        className="max-w-7xl mx-auto my-4 
+    <Wrapper
+      className={`${children && "flex justify-between items-center gap-3"}`}
+    >
+      <div>
+        <div
+          className="max-w-7xl mx-auto my-4 
         md:my-8 lg:my-12 flex flex-wrap 
         text-xs md:text-sm font-medium text-gray-500"
-      >
-        {crumbs}
+        >
+          {crumbs}
+        </div>
       </div>
+      {children}
     </Wrapper>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 type timerItemProps = {
   title: string;
-  time: number;
+  time: number | string;
   isLastItem?: boolean;
 };
 

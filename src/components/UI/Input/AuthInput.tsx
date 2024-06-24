@@ -21,7 +21,7 @@ const AuthInput: React.FC<InputProps> = ({
       <input
         className={`text-sm lg:text-[16px] border-b-2 pb-2 border-gray-100 focus:outline-none focus:border-black-900 ${
           errors[name]?.message ? "" : "mb-8"
-        }`}
+        } ${errors[name]?.message && "border-red-900"}`}
         placeholder={placeholder}
         type={type}
         {...register(name)}
